@@ -19,7 +19,7 @@ def run_main_menu():
 
 
 def print_main_menu():
-        print("Please select an option:")
+        print("\nPlease select an option:")
         print("0. Exit")
         print("1. Unit Converter")
         print("2. Scientific Constants")
