@@ -1,4 +1,4 @@
-from toolkit.units.conversion import *
+from toolkit.units.conversion import Converter
 
 def run_unit_menu():
     while True:
@@ -44,29 +44,82 @@ def print_unit_menu():
     print()
 
 def handle_length():
-    print("Length Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_mass():
-    print("Mass Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_temperature():
-    print("Temperature Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_volume():
-    print("Volume Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_pressure():
-    print("Pressure Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_energy():
-    print("Energy Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_power():
-    print("Power Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_time():
-    print("Time Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
+
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
 
 def handle_speed():
-    print("Speed Conversion Coming Soon")
+    value = float(input("Enter the value to convert: "))
+    from_unit = input("Enter the unit to convert from: ").strip()
+    to_unit = input("Enter the unit to convert to: ").strip()
 
+    converter = Converter()
+    result = converter.convert(value, from_unit, to_unit)
+    print(f"Converted: {result} {to_unit}")
