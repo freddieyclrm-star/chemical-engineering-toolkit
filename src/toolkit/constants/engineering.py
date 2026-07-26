@@ -10,16 +10,17 @@ def print_engineering_menu():
 def run_engineering_menu():
     while True:
         print_engineering_menu()
-        choice = input("Enter your choice: ").strip()
-        if choice == "0" or choice.lower() == "back":
+        choice = input("Enter your choice: ").strip().lower()
+        if choice == "0" or choice == "back":
+            print("Returning to Main Menu...")
             break
-        elif choice == "1" or choice.lower() == "atmospheric pressure":
+        elif choice == "1" or choice == "atmospheric pressure":
             handle_atmospheric_pressure()
-        elif choice == "2" or choice.lower() == "specific heat capacity":
+        elif choice == "2" or choice == "specific heat capacity":
             handle_specific_heat_capacity()
-        elif choice == "3" or choice.lower() == "density of water":
+        elif choice == "3" or choice == "density of water":
             handle_density_of_water()
-        elif choice == "4" or choice.lower() == "density of air":
+        elif choice == "4" or choice == "density of air":
             handle_density_of_air()
         else:
             print("Invalid choice. Please try again.")

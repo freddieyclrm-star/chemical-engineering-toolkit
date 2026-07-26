@@ -17,30 +17,31 @@ def print_scientific_menu():
 def run_scientific_menu():
     while True:
         print_scientific_menu()
-        choice = input("Enter your choice: ").strip()
-        if choice == "0" or choice.lower() == "back":
+        choice = input("Enter your choice: ").strip().lower()
+        if choice == "0" or choice == "back":
+            print("Returning to Main Menu...")
             break
-        elif choice == "1" or choice.lower() == "speed of light":
+        elif choice == "1" or choice == "speed of light":
             handle_speed_of_light()
-        elif choice == "2" or choice.lower() == "planck constant":
+        elif choice == "2" or choice == "planck constant":
             handle_planck_constant()
-        elif choice == "3" or choice.lower() == "boltzmann constant":
+        elif choice == "3" or choice == "boltzmann constant":
             handle_boltzmann_constant()
-        elif choice == "4" or choice.lower() == "newton's gravitational constant":
+        elif choice == "4" or choice == "newton's gravitational constant":
             handle_newtons_gravitational_constant()
-        elif choice == "5" or choice.lower() == "stefan-boltzmann constant":
+        elif choice == "5" or choice == "stefan-boltzmann constant":
             handle_stefan_boltzmann_constant()
-        elif choice == "6" or choice.lower() == "elementary charge":
+        elif choice == "6" or choice == "elementary charge":
             handle_elementary_charge()
-        elif choice == "7" or choice.lower() == "mass of electron":
+        elif choice == "7" or choice == "mass of electron":
             handle_mass_of_electron()
-        elif choice == "8" or choice.lower() == "mass of proton":
+        elif choice == "8" or choice == "mass of proton":
             handle_mass_of_proton()
-        elif choice == "9" or choice.lower() == "mass of neutron":
+        elif choice == "9" or choice == "mass of neutron":
             handle_mass_of_neutron()
-        elif choice == "10" or choice.lower() == "avogadro's constant":
+        elif choice == "10" or choice == "avogadro's constant":
             handle_avogadros_constant()
-        elif choice == "11" or choice.lower() == "molar gas constant":
+        elif choice == "11" or choice == "molar gas constant":
             handle_molar_gas_constant()
         else:
             print("Invalid choice. Please try again.")
