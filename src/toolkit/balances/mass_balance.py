@@ -48,10 +48,46 @@ def handle_multi_stream_balance():
     print(f"Net mass balance: {result} kg/s")
 
 def handle_reaction_stoichiometry_balance():
-    print("Reaction stoichiometry balance Coming Soon")
+    print("\nEnter species involved (comma-separated): A, B, C")
+    species = input("Species: ").strip().split(",")
+    species_list = [s.strip() for s in species]
+
+    print("\nEnter stoichiometric coefficients for each species separated by commas: ")
+    coeff_values = input("Coefficients: ").strip().split(",")
+    coeff_list = [float(x) for x in coeff_values]
+
+    if len(species_list) != len(coeff_list):
+        print("Error: Number of species and coefficients must match.")
+        return
+
+    stoich_coeffs = dict(zip(species_list, coeff_list))
+    reaction_rates = float(input("Enter reaction rate (mol/s): "))
+    result = reaction_stoichiometry_balance(stoich_coeffs, reaction_rates)
+    print("\nRate of consumption/production for each species (mol/s): ")
+    for sp, rate in result.items():
+        print(f"{sp}: {rate} mol/s")
 
 def handle_component_mass_fractions():
-    print("Component mass fractions Coming Soon")
+    print("\nEnter species involved (comma-separated): A, B, C")
+    species = input("Species: ").strip().split(",")
+    species_list = [s.strip() for s in species]
+
+    print("\nEnter masses for each species separated by commas: ")
+    mass_values = input("Masses: ").strip().split(",")
+    mass_list = [float(x) for x in mass_values]
+
+    if len(species_list) != len(mass_list):
+        print("Error: Number of species and masses must match.")
+        return
+
+    masses = dict(zip(species_list, mass_list))
+    result = mass_fractions(masses)
+    print("\nMass fractions for each species: ")
+    for sp, fraction in result.items():
+        print(f"{sp}: {fraction}")
 
 def handle_mixture_mass_flow_calculations():
-    print("Mixture mass flow calculations Coming Soon")
+    density = float(input("Enter mixture density (kg/m^3): "))
+    volumetric_flow = float(input("Enter volumetric flow rate (m^3/s): "))
+    result = mixture_mass_flow(density, volumetric_flow)
+    print(f"Mixture mass flow: {result} kg/s")

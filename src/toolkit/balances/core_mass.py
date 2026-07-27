@@ -1,10 +1,3 @@
-"""       
-1. Single-stream balance
-        print("2. Multi-stream balance")
-        print("3. Reaction stoichiometry balance")
-        print("4. Component mass fractions")
-        print("5. Mixture mass flow calculations")"""
-
 def single_stream_balance(m_in):
     """m_in = m_out"""
     return m_in
