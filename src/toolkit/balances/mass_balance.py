@@ -1,3 +1,5 @@
+from toolkit.balances.core_mass import single_stream_balance, multi_stream_balance, reaction_stoichiometry_balance, mass_fractions, mixture_mass_flow 
+
 def run_mass_balance_menu():
     while True:
         print_mass_balance_menu()
@@ -29,10 +31,21 @@ def print_mass_balance_menu():
         print()
 
 def handle_single_stream_balance():
-    print("Single-stream balance Coming Soon")
+    m_in = float(input("Enter inlet mass flow (kg/s): "))
+    result = single_stream_balance(m_in)
+    print(f"Outlet mass flow: {result} kg/s")
 
 def handle_multi_stream_balance():
-    print("Multi-stream balance Coming Soon")
+    print("\nEnter inlet mass flows (kg/s) separated by commas: ")
+    in_values = input("Inlet streams: ").strip().split(",")
+    in_streams = [float(x) for x in in_values]
+
+    print("\nEnter outlet mass flows (kg/s) separated by commas: ")
+    out_values = input("Outlet streams: ").strip().split(",")
+    out_streams = [float(x) for x in out_values]
+
+    result = multi_stream_balance(in_streams, out_streams)
+    print(f"Net mass balance: {result} kg/s")
 
 def handle_reaction_stoichiometry_balance():
     print("Reaction stoichiometry balance Coming Soon")
