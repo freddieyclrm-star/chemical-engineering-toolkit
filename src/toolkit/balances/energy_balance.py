@@ -1,5 +1,14 @@
 from toolkit.balances.core_energy import sensible_heat, latent_heat, reaction_enthalpy, cp_constant, heat_exchanger_energy_balance, two_stream_heat_exchanger_balance
 
+def get_Float(x):
+    while True:
+        try:
+            user_input = float(input(x))
+            return user_input
+        except ValueError:
+            print("Number expected, try again")
+
+
 def run_energy_balance_menu():
     while True:
         print_energy_balance_menu()
@@ -35,26 +44,40 @@ def print_energy_balance_menu():
 
 def handle_sensible_heat():
     print("\n=== Sensible Heat Calculation ===")
-    mass_flow = float(input("Enter mass flow rate (kg/h): "))
-    cp = float(input("Enter specific heat capacity (J/kg•K)"))
-    t_in = float(input("Enter inlet temperature (C or K)"))
-    t_out = float(input("Enter out;et temperature (C or K)"))
+    mass_flow = get_Float("Enter mass flow rate (kg/h): ")
+    cp = get_Float("Enter specific heat capacity (J/kg•K)")
+    t_in = get_Float("Enter inlet temperature (C or K)")
+    t_out = get_Float("Enter outlet temperature (C or K)")
+
+    if mass_flow <= 0:
+        print("Mass flow must be positive")
+        return
+
+    if cp <= 0:
+        print("specific heat capacity must be positive")
+        return
 
     result = sensible_heat(mass_flow, cp, t_in, t_out)
     print(f"\nSensible heat duty: {result} W")
 
 def handle_latent_heat():
     print("\n=== Latent Heat Calculation ===")
-    mass_flow = float(input("Enter mass flow rate (kg/h): "))
-    latent_heat_value = float(input("Enter latent heat value (J/kg): "))
+    mass_flow = get_Float("Enter mass flow rate (kg/h): ")
+    latent_heat_value = get_Float("Enter latent heat value (J/kg): ")
 
+    if mass_flow <= 0:
+        print("Mass flow must be positive")
+        return
+    if latent_heat_value <= 0:
+        print("Latent heat value must be positive")
+        return
     result = latent_heat(mass_flow, latent_heat_value)
     print(f"\nLatent Heat Duty: {result} W")
 
 def handle_reaction_enthalpy():
     print("\n=== Reaction Enthalpy Calculation ===")
-    reaction_rate = float(input("Enter reaction rate (mol/h): "))
-    delta_h_reaction = float(input("Enter reaction enthalpy ΔH (J/mol): "))
+    reaction_rate = get_Float("Enter reaction rate (mol/h): ")
+    delta_h_reaction = get_Float("Enter reaction enthalpy ΔH (J/mol): ")
 
     result = reaction_enthalpy(reaction_rate, delta_h_reaction)
     print(f"\nReaction Enthalpy Duty: {result} W")
@@ -67,7 +90,11 @@ def handle_heat_capacity():
     choice = input("Choose Cp model (1 or 2): ").strip()
 
     if choice == "1":
-        cp_value = float(input("Enter constant Cp value (J/kg·K): "))
+        cp_value = get_Float("Enter constant Cp value (J/kg·K): ")
+
+        if cp_value <= 0:
+            print("Specific heat capacity must be positive")
+            return
         result = cp_constant(cp_value)
         print(f"\nCp: {result}")
     elif choice == "2":
@@ -80,11 +107,17 @@ def handle_heat_exchanger_energy_balance():
     print("\n=== Heat Exchanger Energy Balance ===")
     print("Calculate heat duty using one stream (hot or cold).")
 
-    mass_flow = float(input("Enter mass flow rate (kg/h): "))
-    cp = float(input("Enter specific heat capacity Cp (J/kg·K): "))
-    t_in = float(input("Enter inlet temperature (°C or K): "))
-    t_out = float(input("Enter outlet temperature (°C or K): "))
+    mass_flow = get_Float("Enter mass flow rate (kg/h): ")
+    cp = get_Float("Enter specific heat capacity Cp (J/kg·K): ")
+    t_in = get_Float("Enter inlet temperature (°C or K): ")
+    t_out = get_Float("Enter outlet temperature (°C or K): ")
 
+    if mass_flow <= 0:
+        print("Mass flow must be positive")
+        return
+    if cp <= 0:
+        print("specific heat capacity must be positive")
+        return
     result = heat_exchanger_energy_balance(mass_flow, cp, t_in, t_out)
 
     print(f"\nHeat Exchanger Duty: {result} W")
@@ -94,17 +127,29 @@ def handle_two_stream_heat_exchanger_balance():
     print("\n=== Two-Stream Heat Exchanger Energy Balance ===")
 
     print("\n--- Hot Stream ---")
-    m_hot = float(input("Enter hot stream mass flow (kg/h): "))
-    cp_hot = float(input("Enter hot stream Cp (J/kg·K): "))
-    t_hot_in = float(input("Enter hot stream inlet temperature (°C or K): "))
-    t_hot_out = float(input("Enter hot stream outlet temperature (°C or K): "))
+    m_hot = get_Float("Enter hot stream mass flow (kg/h): ")
+    cp_hot = get_Float("Enter hot stream Cp (J/kg·K): ")
+    t_hot_in = get_Float("Enter hot stream inlet temperature (°C or K): ")
+    t_hot_out = get_Float("Enter hot stream outlet temperature (°C or K): ")
 
     print("\n--- Cold Stream ---")
-    m_cold = float(input("Enter cold stream mass flow (kg/h): "))
-    cp_cold = float(input("Enter cold stream Cp (J/kg·K): "))
-    t_cold_in = float(input("Enter cold stream inlet temperature (°C or K): "))
-    t_cold_out = float(input("Enter cold stream outlet temperature (°C or K): "))
+    m_cold = get_Float("Enter cold stream mass flow (kg/h): ")
+    cp_cold = get_Float("Enter cold stream Cp (J/kg·K): ")
+    t_cold_in = get_Float("Enter cold stream inlet temperature (°C or K): ")
+    t_cold_out = get_Float("Enter cold stream outlet temperature (°C or K): ")
 
+    if m_hot <= 0 or m_cold <= 0:
+        print("Mass flow must be positive")
+        return
+    if cp_hot <= 0 or cp_cold <= 0:
+        print("specific heat capacity must be positive")
+        return
+    if t_hot_in < t_hot_out:
+        print("Hot stream should cool down")
+        return
+    if t_cold_in > t_cold_out:
+        print("Cold stream sould heat up")
+        return
     q_hot, q_cold, imbalance = two_stream_heat_exchanger_balance(m_hot, cp_hot, t_hot_in, t_hot_out, m_cold, cp_cold, t_cold_in, t_cold_out)
     print("\n--- Results ---")
     print(f"Hot-side duty:  {q_hot} W")
