@@ -1,5 +1,5 @@
 from toolkit.balances.core_energy import sensible_heat, latent_heat, reaction_enthalpy, cp_constant, heat_exchanger_energy_balance, two_stream_heat_exchanger_balance
-
+from toolkit.utils.input_validation import check_non_negative
 def get_Float(x):
     while True:
         try:
@@ -44,13 +44,13 @@ def print_energy_balance_menu():
 
 def handle_sensible_heat():
     print("\n=== Sensible Heat Calculation ===")
-    mass_flow = get_Float("Enter mass flow rate (kg/h): ")
-    cp = get_Float("Enter specific heat capacity (J/kg•K)")
-    t_in = get_Float("Enter inlet temperature (C or K)")
-    t_out = get_Float("Enter outlet temperature (C or K)")
+    mass_flow = get_Float("Enter mass flow rate (kg/s): ")
+    cp = get_Float("Enter specific heat capacity (J/kg•K): ")
+    t_in = get_Float("Enter inlet temperature (°C): ")
+    t_out = get_Float("Enter outlet temperature (°C): ")
 
     if mass_flow <= 0:
-        print("Mass flow must be positive")
+        print("Mass flow rate must be positive")
         return
 
     if cp <= 0:
@@ -62,11 +62,11 @@ def handle_sensible_heat():
 
 def handle_latent_heat():
     print("\n=== Latent Heat Calculation ===")
-    mass_flow = get_Float("Enter mass flow rate (kg/h): ")
+    mass_flow = get_Float("Enter mass flow rate (kg/s): ")
     latent_heat_value = get_Float("Enter latent heat value (J/kg): ")
 
     if mass_flow <= 0:
-        print("Mass flow must be positive")
+        print("Mass flow rate must be positive")
         return
     if latent_heat_value <= 0:
         print("Latent heat value must be positive")
@@ -76,7 +76,7 @@ def handle_latent_heat():
 
 def handle_reaction_enthalpy():
     print("\n=== Reaction Enthalpy Calculation ===")
-    reaction_rate = get_Float("Enter reaction rate (mol/h): ")
+    reaction_rate = get_Float("Enter reaction rate (mol/s): ")
     delta_h_reaction = get_Float("Enter reaction enthalpy ΔH (J/mol): ")
 
     result = reaction_enthalpy(reaction_rate, delta_h_reaction)
@@ -107,13 +107,13 @@ def handle_heat_exchanger_energy_balance():
     print("\n=== Heat Exchanger Energy Balance ===")
     print("Calculate heat duty using one stream (hot or cold).")
 
-    mass_flow = get_Float("Enter mass flow rate (kg/h): ")
+    mass_flow = get_Float("Enter mass flow rate (kg/s): ")
     cp = get_Float("Enter specific heat capacity Cp (J/kg·K): ")
-    t_in = get_Float("Enter inlet temperature (°C or K): ")
-    t_out = get_Float("Enter outlet temperature (°C or K): ")
+    t_in = get_Float("Enter inlet temperature (°C): ")
+    t_out = get_Float("Enter outlet temperature (°C): ")
 
     if mass_flow <= 0:
-        print("Mass flow must be positive")
+        print("Mass flow rate must be positive")
         return
     if cp <= 0:
         print("specific heat capacity must be positive")
@@ -127,19 +127,19 @@ def handle_two_stream_heat_exchanger_balance():
     print("\n=== Two-Stream Heat Exchanger Energy Balance ===")
 
     print("\n--- Hot Stream ---")
-    m_hot = get_Float("Enter hot stream mass flow (kg/h): ")
+    m_hot = get_Float("Enter hot stream mass flow rate (kg/s): ")
     cp_hot = get_Float("Enter hot stream Cp (J/kg·K): ")
-    t_hot_in = get_Float("Enter hot stream inlet temperature (°C or K): ")
-    t_hot_out = get_Float("Enter hot stream outlet temperature (°C or K): ")
+    t_hot_in = get_Float("Enter hot stream inlet temperature (°C): ")
+    t_hot_out = get_Float("Enter hot stream outlet temperature (°C): ")
 
     print("\n--- Cold Stream ---")
-    m_cold = get_Float("Enter cold stream mass flow (kg/h): ")
+    m_cold = get_Float("Enter cold stream mass flow rate (kg/s): ")
     cp_cold = get_Float("Enter cold stream Cp (J/kg·K): ")
-    t_cold_in = get_Float("Enter cold stream inlet temperature (°C or K): ")
-    t_cold_out = get_Float("Enter cold stream outlet temperature (°C or K): ")
+    t_cold_in = get_Float("Enter cold stream inlet temperature (°C): ")
+    t_cold_out = get_Float("Enter cold stream outlet temperature (°C): ")
 
     if m_hot <= 0 or m_cold <= 0:
-        print("Mass flow must be positive")
+        print("Mass flow rate must be positive")
         return
     if cp_hot <= 0 or cp_cold <= 0:
         print("specific heat capacity must be positive")

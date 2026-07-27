@@ -31,16 +31,16 @@ def print_mass_balance_menu():
         print()
 
 def handle_single_stream_balance():
-    m_in = float(input("Enter inlet mass flow (kg/s): "))
+    m_in = float(input("Enter inlet mass flow rate (kg/s): "))
     result = single_stream_balance(m_in)
-    print(f"Outlet mass flow: {result} kg/s")
+    print(f"Outlet mass flow rate: {result} kg/s")
 
 def handle_multi_stream_balance():
-    print("\nEnter inlet mass flows (kg/s) separated by commas: ")
+    print("\nEnter inlet mass flows rate (kg/s), separated by commas: ")
     in_values = input("Inlet streams: ").strip().split(",")
     in_streams = [float(x) for x in in_values]
 
-    print("\nEnter outlet mass flows (kg/s) separated by commas: ")
+    print("\nEnter outlet mass flows rate (kg/s), separated by commas: ")
     out_values = input("Outlet streams: ").strip().split(",")
     out_streams = [float(x) for x in out_values]
 
@@ -48,11 +48,11 @@ def handle_multi_stream_balance():
     print(f"Net mass balance: {result} kg/s")
 
 def handle_reaction_stoichiometry_balance():
-    print("\nEnter species involved (comma-separated): A, B, C")
+    print("\nEnter species involved, separated by commas: ")
     species = input("Species: ").strip().split(",")
     species_list = [s.strip() for s in species]
 
-    print("\nEnter stoichiometric coefficients for each species separated by commas: ")
+    print("\nEnter stoichiometric coefficients for each species, separated by commas: ")
     coeff_values = input("Coefficients: ").strip().split(",")
     coeff_list = [float(x) for x in coeff_values]
 
@@ -68,11 +68,11 @@ def handle_reaction_stoichiometry_balance():
         print(f"{sp}: {rate} mol/s")
 
 def handle_component_mass_fractions():
-    print("\nEnter species involved (comma-separated): A, B, C")
+    print("\nEnter species involved, separated by commas: ")
     species = input("Species: ").strip().split(",")
     species_list = [s.strip() for s in species]
 
-    print("\nEnter masses for each species separated by commas: ")
+    print("\nEnter masses for each species (kg/s), separated by commas: ")
     mass_values = input("Masses: ").strip().split(",")
     mass_list = [float(x) for x in mass_values]
 
@@ -90,4 +90,4 @@ def handle_mixture_mass_flow_calculations():
     density = float(input("Enter mixture density (kg/m^3): "))
     volumetric_flow = float(input("Enter volumetric flow rate (m^3/s): "))
     result = mixture_mass_flow(density, volumetric_flow)
-    print(f"Mixture mass flow: {result} kg/s")
+    print(f"Mixture mass flow rate: {result} kg/s")
