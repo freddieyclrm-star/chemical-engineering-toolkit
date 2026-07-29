@@ -1,4 +1,22 @@
 from toolkit.units.conversion import Converter
+from toolkit.utils.input_validation import get_float, check_non_negative, check_positive
+from toolkit.utils.formatting import format_label, format_result, format_section, success_message, error_message
+
+def handler_name():
+    # Inputs section
+    format_section("Inputs")
+    format_label(...)
+    format_label(...)
+
+    # Validation
+    if not check_non_negative(...):
+        error_message()
+        return
+
+    # Results section
+    format_section("Results")
+    format_result(...)
+    success_message()
 
 def run_unit_menu():
     while True:
@@ -44,82 +62,160 @@ def print_unit_menu():
     print()
 
 def handle_length():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_mass():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+
+    if not check_non_negative(value, "Mass"):
+        error_message()
+        return
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_temperature():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_volume():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+
+    if not check_non_negative(value, "Volume"):
+        error_message()
+        return
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_pressure():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+
+    if not check_non_negative(value, "Pressure"):
+        error_message()
+        return
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_energy():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+
+    if not check_non_negative(value, "Energy"):
+        error_message()
+        return
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_power():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
+
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+
+    if not check_non_negative(value, "Power"):
+        error_message()
+        return
 
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_time():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+
+    if not check_non_negative(value, "Time"):
+        error_message()
+        return
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()
 
 def handle_speed():
-    value = float(input("Enter the value to convert: "))
+    value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
+    print()
 
+    format_section("Inputs")
+    format_label("From unit", value, from_unit)
+    
     converter = Converter()
     result = converter.convert(value, from_unit, to_unit)
-    print(f"Converted: {result} {to_unit}")
+    format_section("Results")
+    format_result("Converted", result, to_unit)
+    success_message()

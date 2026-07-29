@@ -1,5 +1,6 @@
-from toolkit.core import unit_converter, scientific_constants, engineering_constants, mass_balance, energy_balance
-
+from toolkit.balances import mass_balance, energy_balance
+from toolkit.constants import engineering_constants, scientific_constants
+from toolkit.units import unit_converter
 def run_main_menu():
     while True:
         print_main_menu()
@@ -22,7 +23,11 @@ def run_main_menu():
 
 
 def print_main_menu():
-        print("\nPlease select an option:")
+        print("\n================================")
+        print("Chemical Engineering Toolkit")
+        print("Version 0.1.0")
+        print("================================")
+        print("Please select an option:")
         print("0. Exit")
         print("1. Unit Converter")
         print("2. Scientific Constants")
@@ -33,13 +38,14 @@ def print_main_menu():
         
 
 def handle_unit_converter():
-    unit_converter.run_unit_converter_menu()
+    unit_converter.run_unit_menu()
 
 def handle_scientific_constants():
-    scientific_constants.run_scientific_constants_menu()
+    scientific_constants.run_scientific_menu()
 
 def handle_engineering_constants():
-    engineering_constants.run_engineering_constants_menu()
+    engineering_constants.run_engineering_menu()
+
 def handle_mass_balance():
     mass_balance.run_mass_balance_menu()
 
