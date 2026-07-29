@@ -233,3 +233,50 @@ Version 0.1.0 demonstrates:
 - Testing
 
 - Maintainable architecture
+
+## 📍 Roadmap
+
+The Chemical Engineering Toolkit follows a structured, professional release cycle designed to build a strong foundation before expanding into more advanced engineering features.
+
+### 🔹 v0.1.1 — Quality & Stability Release (In Progress)
+Focus: Professionalise the codebase before adding new engineering features.
+
+**Code Quality**
+- Type hints across all modules  
+- Consistent NumPy/SciPy‑style docstrings  
+- Black formatting  
+- Ruff/Flake8 linting  
+- Removal of unused imports and dead code  
+
+**Engineering Quality**
+- Document assumptions for each calculator  
+- Add references for constants (CODATA, CRC Handbook, etc.)  
+- Verify unit consistency  
+- Improve engineering error messages  
+
+**Testing**
+- Invalid input tests  
+- Regression tests  
+- Increased coverage  
+- Clean‑environment test validation  
+
+**CLI & UX**
+- Improved menu formatting  
+- Better invalid input handling  
+- Standardised prompts and output  
+- Optional colour/screen‑clearing  
+
+**Documentation**
+- Expanded README (screenshots, examples, project tree)  
+- Standardised module documentation  
+- Assumptions, equations, references, examples  
+- Updated CHANGELOG  
+- Installation instructions review  
+
+**Release Engineering**
+- GitHub Actions for automated pytest  
+- Optional README badges  
+- Tag and publish v0.1.1  
+- Write release notes  
+
+---
