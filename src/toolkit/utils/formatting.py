@@ -1,9 +1,9 @@
-def format_result(title, value, unit):
+def format_result(title:str, value:float, unit:str):
     title = title + ":"
     print(f"{title:<20}{value:.3f} {unit}")
     print()
 
-def format_label(title, value, unit):
+def format_label(title:str, value:float, unit:str):
     title = title + ":"
 
     # Handle lists → join into a readable string
@@ -18,7 +18,7 @@ def format_label(title, value, unit):
 
     print(f"{title:<20}{value_str} {unit}")
 
-def format_section(header):
+def format_section(header:str):
     print(f"--- {header} ---")
     print()
 

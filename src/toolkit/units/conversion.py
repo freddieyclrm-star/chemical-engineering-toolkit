@@ -4,7 +4,7 @@ class Converter:
     def __init__(self):
         self.units = UNITS
 
-    def convert(self, value, from_unit, to_unit):
+    def convert(self, value: float, from_unit: str, to_unit:str)->float:
         from_unit_cat = None
         to_unit_cat = None
         for category, unitname in self.units.items():
