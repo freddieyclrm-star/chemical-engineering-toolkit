@@ -1,3 +1,9 @@
+"""Unit definitions for conversion factors.
+
+Reference:
+- Conversion values are based on standard international definitions and trusted sources such as NIST unit conversions and engineering reference tables.
+"""
+
 UNITS = {
     "length": {
         "mm": 0.001,

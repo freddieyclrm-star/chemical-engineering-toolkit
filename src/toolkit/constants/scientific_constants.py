@@ -3,6 +3,9 @@ def print_scientific_menu() -> None:
 
     This function displays the list of available scientific constants
     and their corresponding menu numbers. It does not return a value.
+
+    Assumptions:
+        Constants are displayed in SI units.
     """
     print("\n=== Scientific Constants ===")
     print("0. Back")
@@ -59,55 +62,107 @@ def run_scientific_menu() -> None:
 
 
 def handle_speed_of_light() -> None:
-    """Display the value of the speed of light (m/s)."""
+    """Display the value of the speed of light (m/s).
+
+    Assumptions:
+        Vacuum speed of light at standard conditions.
+    References:
+        CODATA 2018 value for the speed of light from NIST and IUPAP.
+    """
     print("Speed of Light: 299,792,458 m/s")
 
 
 def handle_planck_constant() -> None:
-    """Display the value of Planck's constant (J·s)."""
+    """Display the value of Planck's constant (J·s).
+
+    References:
+        CODATA 2018 fixed constant value from NIST.
+    """
     print("Planck Constant: 6.62607015 × 10^-34 J·s")
 
 
 def handle_boltzmann_constant() -> None:
-    """Display the value of the Boltzmann constant (J/K)."""
+    """Display the value of the Boltzmann constant (J/K).
+
+    References:
+        CODATA 2018 fixed constant value from NIST.
+    """
     print("Boltzmann Constant: 1.380649 × 10^-23 J/K")
 
 
 def handle_newtons_gravitational_constant() -> None:
-    """Display Newton's gravitational constant (m^3/(kg·s^2))."""
+    """Display Newton's gravitational constant (m^3/(kg·s^2)).
+
+    References:
+        CODATA 2018 recommended value from NIST.
+    """
     print("Newton's Gravitational Constant: 6.6743015 × 10^-11 m^3/(kg·s^2)")
 
 
 def handle_stefan_boltzmann_constant() -> None:
-    """Display the Stefan-Boltzmann constant (W/(m^2·K^4))."""
+    """Display the Stefan-Boltzmann constant (W/(m^2·K^4)).
+
+    References:
+        CODATA 2018 recommended value from NIST.
+    """
     print("Stefan-Boltzmann Constant: 5.670374419 × 10^-8 W/(m^2·K^4)")
 
 
 def handle_elementary_charge() -> None:
-    """Display the elementary charge (C)."""
+    """Display the elementary charge (C).
+
+    References:
+        CODATA 2018 fixed constant value from NIST.
+    """
     print("Elementary Charge: 1.602176634 × 10^-19 C")
 
 
 def handle_mass_of_electron() -> None:
-    """Display the mass of an electron (kg)."""
+    """Display the mass of an electron (kg).
+
+    Assumptions:
+        Rest mass of electron.
+    References:
+        CODATA 2018 recommended value from NIST.
+    """
     print("Mass of Electron: 9.109383713928 × 10^-31 kg")
 
 
 def handle_mass_of_proton() -> None:
-    """Display the mass of a proton (kg)."""
+    """Display the mass of a proton (kg).
+
+    Assumptions:
+        Rest mass of proton.
+    References:
+        CODATA 2018 recommended value from NIST.
+    """
     print("Mass of Proton: 1.6726219259552 × 10^-27 kg")
 
 
 def handle_mass_of_neutron() -> None:
-    """Display the mass of a neutron (kg)."""
+    """Display the mass of a neutron (kg).
+
+    Assumptions:
+        Rest mass of neutron.
+    References:
+        CODATA 2018 recommended value from NIST.
+    """
     print("Mass of Neutron: 1.6749275005685 × 10^-27 kg")
 
 
 def handle_avogadros_constant() -> None:
-    """Display Avogadro's constant (mol^-1)."""
+    """Display Avogadro's constant (mol^-1).
+
+    References:
+        CODATA 2018 fixed constant value from NIST.
+    """
     print("Avogadro's Constant: 6.02214076 × 10^23 mol^-1")
 
 
 def handle_molar_gas_constant() -> None:
-    """Display the molar gas constant R (J/(mol·K))."""
+    """Display the molar gas constant R (J/(mol·K)).
+
+    References:
+        CODATA 2018 recommended value from NIST.
+    """
     print("Molar Gas Constant: 8.31446261815324 J/(mol·K)")

@@ -1,5 +1,10 @@
 def print_engineering_menu() -> None:
-    """Print the engineering constants menu options."""
+    """Print the engineering constants menu options.
+
+    Assumptions:
+    - Menu display is formatted for standard console output.
+    - All constants are at standard conditions (STP).
+    """
     print("\n=== Engineering Constants ===")
     print("0. Back")
     print("1. Atmospheric Pressure")
@@ -30,20 +35,54 @@ def run_engineering_menu() -> None:
 
 
 def handle_atmospheric_pressure() -> None:
-    """Print the standard atmospheric pressure constant."""
+    """Print the standard atmospheric pressure constant.
+
+    Assumptions:
+    - Standard atmospheric pressure at sea level (101,325 Pa).
+    - Temperature = 15°C, relative humidity = 0%.
+
+    References:
+    - NIST Standard Reference Database: standard atmospheric pressure at sea level.
+    """
     print("Atmospheric Pressure: 101,325 Pa")
 
 
 def handle_specific_heat_capacity() -> None:
-    """Print the specific heat capacity of water constant."""
+    """Print the specific heat capacity of water constant.
+
+    Assumptions:
+    - Value applies to liquid water at 25°C.
+    - Pressure = 1 atm.
+
+    References:
+    - IAPWS / CRC Handbook of Chemistry and Physics: specific heat capacity of liquid water.
+    """
     print("Specific Heat Capacity of Water: 4.184 J/g°C")
 
 
 def handle_density_of_water() -> None:
-    """Print the density of water constant."""
+    """Print the density of water constant.
+
+    Assumptions:
+    - Liquid water at 4°C (maximum density).
+    - Pure water with no dissolved solids.
+    - Pressure = 1 atm.
+
+    References:
+    - IUPAC / CRC Handbook of Chemistry and Physics: density of pure water at 4°C.
+    """
     print("Density of Water: 1,000 kg/m³")
 
 
 def handle_density_of_air() -> None:
-    """Print the density of air constant."""
+    """Print the density of air constant.
+
+    Assumptions:
+    - Dry air at sea level conditions.
+    - Temperature = 15°C, pressure = 101,325 Pa.
+    - Standard air composition (78% N2, 21% O2, 1% Ar and others).
+
+    References:
+    - ICAO standard atmosphere: density of dry air at sea level.
+    """
     print("Density of Air: 1.225 kg/m³")
