@@ -1,8 +1,28 @@
-from toolkit.balances.core_mass import single_stream_balance, multi_stream_balance, reaction_stoichiometry_balance, mass_fractions, mixture_mass_flow 
+from toolkit.balances.core_mass import (
+    single_stream_balance,
+    multi_stream_balance,
+    reaction_stoichiometry_balance,
+    mass_fractions,
+    mixture_mass_flow,
+)
 from toolkit.utils.input_validation import get_float, check_non_negative, check_positive
-from toolkit.utils.formatting import format_label, format_result, format_section, success_message, error_message
+from toolkit.utils.formatting import (
+    format_label,
+    format_result,
+    format_section,
+    success_message,
+    error_message,
+)
 
-def handler_name():
+
+def handler_name() -> None:
+    """Placeholder handler function.
+
+    This function is a placeholder present in the original file. It prints an
+    inputs section, performs a non-negative check on a value and prints a
+    results section. The implementation here mirrors the original placeholder
+    behavior (no real values are processed).
+    """
     # Inputs section
     print()
     format_section("Inputs")
@@ -20,7 +40,14 @@ def handler_name():
     format_result(...)
     success_message()
 
-def run_mass_balance_menu():
+
+def run_mass_balance_menu() -> None:
+    """Display and process the mass balance menu.
+
+    Repeatedly shows the mass balance menu options, prompts the user for a
+    selection, and dispatches the chosen handler. The loop continues until the
+    user chooses to return to the main menu.
+    """
     while True:
         print_mass_balance_menu()
         choice = input("Enter your choice: ").strip().lower()
@@ -40,34 +67,52 @@ def run_mass_balance_menu():
         else:
             print("Invalid choice. Please try again.")
 
-def print_mass_balance_menu():
-        print("\n=== Mass Balance ===")
-        print("0. Back")
-        print("1. Single-stream balance")
-        print("2. Multi-stream balance")
-        print("3. Reaction stoichiometry balance")
-        print("4. Component mass fractions")
-        print("5. Mixture mass flow calculations")
-        print()
 
-def handle_single_stream_balance():
+def print_mass_balance_menu() -> None:
+    """Print the mass balance menu options.
+
+    Displays the available mass balance operations and the option to go back to
+    the main menu.
+    """
+    print("\n=== Mass Balance ===")
+    print("0. Back")
+    print("1. Single-stream balance")
+    print("2. Multi-stream balance")
+    print("3. Reaction stoichiometry balance")
+    print("4. Component mass fractions")
+    print("5. Mixture mass flow calculations")
+    print()
+
+
+def handle_single_stream_balance() -> None:
+    """Handle single-stream mass balance input, validation and output.
+
+    Prompts the user for an inlet mass flow rate, validates it and prints the
+    computed single stream balance result.
+    """
     m_in = get_float("Enter inlet mass flow rate (kg/s): ")
     print()
 
     format_section("Inputs")
     format_label("Inlet mass flow rate", m_in, "kg/s")
-    
-    if not check_non_negative(m_in, "Inlet mass flow rate" ):
+
+    if not check_non_negative(m_in, "Inlet mass flow rate"):
         error_message()
         return
-    
+
     result = single_stream_balance(m_in)
     print()
     format_section("Results")
     format_result("Single stream balance", result, "kg/s")
     success_message()
 
-def handle_multi_stream_balance():
+
+def handle_multi_stream_balance() -> None:
+    """Handle multi-stream mass balance input and output.
+
+    Prompts the user for inlet and outlet stream mass flows and prints the
+    net mass balance.
+    """
     print("\nEnter inlet mass flows rate (kg/s), separated by commas: ")
     in_values = input("Inlet streams: ").strip().split(",")
     in_streams = [float(x) for x in in_values]
@@ -87,7 +132,13 @@ def handle_multi_stream_balance():
     format_result("Net mass balance", result, "kg/s")
     success_message()
 
-def handle_reaction_stoichiometry_balance():
+
+def handle_reaction_stoichiometry_balance() -> None:
+    """Handle reaction stoichiometry balance calculations.
+
+    Prompts for species names and stoichiometric coefficients, reaction rate
+    and prints the rate of consumption/production for each species.
+    """
     print("\nEnter species involved, separated by commas: ")
     species = input("Species: ").strip().split(",")
     species_list = [s.strip() for s in species]
@@ -118,7 +169,12 @@ def handle_reaction_stoichiometry_balance():
     success_message()
 
 
-def handle_component_mass_fractions():
+def handle_component_mass_fractions() -> None:
+    """Compute and display component mass fractions.
+
+    Prompts for species and their masses, validates input lengths and prints
+    mass fractions for each species.
+    """
     print("\nEnter species involved, separated by commas: ")
     species = input("Species: ").strip().split(",")
     species_list = [s.strip() for s in species]
@@ -145,7 +201,13 @@ def handle_component_mass_fractions():
         format_result(sp, fraction, "")
     success_message()
 
-def handle_mixture_mass_flow_calculations():
+
+def handle_mixture_mass_flow_calculations() -> None:
+    """Calculate mixture mass flow from density and volumetric flow.
+
+    Prompts for mixture density and volumetric flow, validates them and
+    prints the resulting mixture mass flow rate.
+    """
     density = get_float("Enter mixture density (kg/m^3): ")
     volumetric_flow = get_float("Enter volumetric flow rate (m^3/s): ")
     print()
@@ -154,10 +216,10 @@ def handle_mixture_mass_flow_calculations():
     format_label("Mixture density", density, "kg/m^3")
     format_label("Volumetric flow rate", volumetric_flow, "m^3/s")
 
-    if not check_positive(density, "Mixture density" ):
+    if not check_positive(density, "Mixture density"):
         error_message()
         return
-    if not check_non_negative(volumetric_flow, "Volumetric flow rate" ):
+    if not check_non_negative(volumetric_flow, "Volumetric flow rate"):
         error_message()
         return
 

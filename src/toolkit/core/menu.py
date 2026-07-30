@@ -1,7 +1,14 @@
 from toolkit.balances import mass_balance, energy_balance
 from toolkit.constants import engineering_constants, scientific_constants
 from toolkit.units import unit_converter
-def run_main_menu():
+
+
+def run_main_menu() -> None:
+    """Run the main menu loop for the Chemical Engineering Toolkit.
+
+    Displays the main menu, reads user input, and invokes the selected menu
+    handler until the user chooses to exit.
+    """
     while True:
         print_main_menu()
         choice = input("Enter your choice: ").strip().lower()
@@ -22,32 +29,42 @@ def run_main_menu():
             print("Invalid choice. Please try again.")
 
 
-def print_main_menu():
-        print("\n================================")
-        print("Chemical Engineering Toolkit")
-        print("Version 0.1.0")
-        print("================================")
-        print("Please select an option:")
-        print("0. Exit")
-        print("1. Unit Converter")
-        print("2. Scientific Constants")
-        print("3. Engineering Constants")
-        print("4. Mass Balance")
-        print("5. Energy Balance")
-        print()
-        
+def print_main_menu() -> None:
+    """Print the main menu options to the console."""
+    print("\n================================")
+    print("Chemical Engineering Toolkit")
+    print("Version 0.1.0")
+    print("================================")
+    print("Please select an option:")
+    print("0. Exit")
+    print("1. Unit Converter")
+    print("2. Scientific Constants")
+    print("3. Engineering Constants")
+    print("4. Mass Balance")
+    print("5. Energy Balance")
+    print()
 
-def handle_unit_converter():
+
+def handle_unit_converter() -> None:
+    """Handle the unit converter menu selection."""
     unit_converter.run_unit_menu()
 
-def handle_scientific_constants():
+
+def handle_scientific_constants() -> None:
+    """Handle the scientific constants menu selection."""
     scientific_constants.run_scientific_menu()
 
-def handle_engineering_constants():
+
+def handle_engineering_constants() -> None:
+    """Handle the engineering constants menu selection."""
     engineering_constants.run_engineering_menu()
 
-def handle_mass_balance():
+
+def handle_mass_balance() -> None:
+    """Handle the mass balance menu selection."""
     mass_balance.run_mass_balance_menu()
 
-def handle_energy_balance():
+
+def handle_energy_balance() -> None:
+    """Handle the energy balance menu selection."""
     energy_balance.run_energy_balance_menu()

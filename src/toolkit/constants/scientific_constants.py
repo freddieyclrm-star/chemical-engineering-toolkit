@@ -1,4 +1,9 @@
-def print_scientific_menu():
+def print_scientific_menu() -> None:
+    """Print the scientific constants menu to stdout.
+
+    This function displays the list of available scientific constants
+    and their corresponding menu numbers. It does not return a value.
+    """
     print("\n=== Scientific Constants ===")
     print("0. Back")
     print("1. Speed of Light")
@@ -14,7 +19,13 @@ def print_scientific_menu():
     print("11. Molar Gas Constant")
     print()
 
-def run_scientific_menu():
+
+def run_scientific_menu() -> None:
+    """Run the interactive scientific constants menu loop.
+
+    Continues to prompt the user for choices until they select '0' or
+    type 'back'. Calls the appropriate handler for each selection.
+    """
     while True:
         print_scientific_menu()
         choice = input("Enter your choice: ").strip().lower()
@@ -46,35 +57,57 @@ def run_scientific_menu():
         else:
             print("Invalid choice. Please try again.")
 
-def handle_speed_of_light():
+
+def handle_speed_of_light() -> None:
+    """Display the value of the speed of light (m/s)."""
     print("Speed of Light: 299,792,458 m/s")
 
-def handle_planck_constant():
+
+def handle_planck_constant() -> None:
+    """Display the value of Planck's constant (J·s)."""
     print("Planck Constant: 6.62607015 × 10^-34 J·s")
 
-def handle_boltzmann_constant():
+
+def handle_boltzmann_constant() -> None:
+    """Display the value of the Boltzmann constant (J/K)."""
     print("Boltzmann Constant: 1.380649 × 10^-23 J/K")
 
-def handle_newtons_gravitational_constant():
+
+def handle_newtons_gravitational_constant() -> None:
+    """Display Newton's gravitational constant (m^3/(kg·s^2))."""
     print("Newton's Gravitational Constant: 6.6743015 × 10^-11 m^3/(kg·s^2)")
 
-def handle_stefan_boltzmann_constant():
+
+def handle_stefan_boltzmann_constant() -> None:
+    """Display the Stefan-Boltzmann constant (W/(m^2·K^4))."""
     print("Stefan-Boltzmann Constant: 5.670374419 × 10^-8 W/(m^2·K^4)")
 
-def handle_elementary_charge():
+
+def handle_elementary_charge() -> None:
+    """Display the elementary charge (C)."""
     print("Elementary Charge: 1.602176634 × 10^-19 C")
 
-def handle_mass_of_electron():
+
+def handle_mass_of_electron() -> None:
+    """Display the mass of an electron (kg)."""
     print("Mass of Electron: 9.109383713928 × 10^-31 kg")
 
-def handle_mass_of_proton():
+
+def handle_mass_of_proton() -> None:
+    """Display the mass of a proton (kg)."""
     print("Mass of Proton: 1.6726219259552 × 10^-27 kg")
 
-def handle_mass_of_neutron():
+
+def handle_mass_of_neutron() -> None:
+    """Display the mass of a neutron (kg)."""
     print("Mass of Neutron: 1.6749275005685 × 10^-27 kg")
 
-def handle_avogadros_constant():
+
+def handle_avogadros_constant() -> None:
+    """Display Avogadro's constant (mol^-1)."""
     print("Avogadro's Constant: 6.02214076 × 10^23 mol^-1")
 
-def handle_molar_gas_constant():
+
+def handle_molar_gas_constant() -> None:
+    """Display the molar gas constant R (J/(mol·K))."""
     print("Molar Gas Constant: 8.31446261815324 J/(mol·K)")

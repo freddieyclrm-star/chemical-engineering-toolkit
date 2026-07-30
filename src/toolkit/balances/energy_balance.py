@@ -1,8 +1,28 @@
-from toolkit.balances.core_energy import sensible_heat, latent_heat, reaction_enthalpy, cp_constant, heat_exchanger_energy_balance, two_stream_heat_exchanger_balance
-from toolkit.utils.input_validation import check_non_negative, get_float, check_positive, check_temperature_direction
-from toolkit.utils.formatting import format_result, format_label, format_section, success_message, error_message
+from toolkit.balances.core_energy import (
+    sensible_heat,
+    latent_heat,
+    reaction_enthalpy,
+    cp_constant,
+    heat_exchanger_energy_balance,
+    two_stream_heat_exchanger_balance,
+)
+from toolkit.utils.input_validation import (
+    check_non_negative,
+    get_float,
+    check_positive,
+    check_temperature_direction,
+)
+from toolkit.utils.formatting import (
+    format_result,
+    format_label,
+    format_section,
+    success_message,
+    error_message,
+)
 
-def handler_name():
+
+def handler_name() -> None:
+    """Display placeholder input and result sections for a generic handler."""
     # Inputs section
     print()
     format_section("Inputs")
@@ -20,7 +40,9 @@ def handler_name():
     format_result(...)
     success_message()
 
-def run_energy_balance_menu():
+
+def run_energy_balance_menu() -> None:
+    """Display the energy balance menu and handle user menu selections."""
     while True:
         print_energy_balance_menu()
         choice = input("Enter your choice: ").strip().lower()
@@ -42,7 +64,9 @@ def run_energy_balance_menu():
         else:
             print("Invalid choice. Please try again.")
 
-def print_energy_balance_menu():
+
+def print_energy_balance_menu() -> None:
+    """Print the available energy balance options to the console."""
     print("\n=== Energy Balance ===")
     print("0. Back")
     print("1. Sensible Heat Calculation")
@@ -53,7 +77,9 @@ def print_energy_balance_menu():
     print("6. Two Streams Heat Exchanger Balance")
     print()
 
-def handle_sensible_heat():
+
+def handle_sensible_heat() -> None:
+    """Collect inputs for sensible heat, validate them, and display the computed duty."""
     print("\n=== Sensible Heat Calculation ===")
     mass_flow = get_float("Enter mass flow rate (kg/s): ")
     cp = get_float("Enter specific heat capacity (J/kg•K): ")
@@ -81,12 +107,14 @@ def handle_sensible_heat():
     format_result("Sensible heat duty", result, "W")
     success_message()
 
-def handle_latent_heat():
+
+def handle_latent_heat() -> None:
+    """Collect latent heat inputs, validate them, and display the result."""
     print("\n=== Latent Heat Calculation ===")
     mass_flow = get_float("Enter mass flow rate (kg/s): ")
     latent_heat_value = get_float("Enter latent heat value (J/kg): ")
     print()
-    
+
     format_section("Inputs")
     format_label("Mass flow rate", mass_flow, "kg/s")
     format_label("Latent heat value", latent_heat_value, "J/kg")
@@ -103,12 +131,14 @@ def handle_latent_heat():
     format_result("Latent heat duty", result, "W")
     success_message()
 
-def handle_reaction_enthalpy():
+
+def handle_reaction_enthalpy() -> None:
+    """Collect reaction enthalpy inputs and display the calculated duty."""
     print("\n=== Reaction Enthalpy Calculation ===")
     reaction_rate = get_float("Enter reaction rate (mol/s): ")
     delta_h_reaction = get_float("Enter reaction enthalpy ΔH (J/mol): ")
     print()
-    
+
     format_section("Inputs")
     format_label("Reaction rate", reaction_rate, "mol/s")
     format_label("Reaction enthalpy ΔH", delta_h_reaction, "J/mol")
@@ -119,7 +149,9 @@ def handle_reaction_enthalpy():
     format_result("Reaction enthalpy duty", result, "W")
     success_message()
 
-def handle_heat_capacity():
+
+def handle_heat_capacity() -> None:
+    """Handle heat capacity model selection and return the appropriate Cp value."""
     print("\n=== Heat Capacity (Cp) Calculations ===")
     print("1. Constant Cp")
     print("2. Polynomial Cp (Coming Soon)")
@@ -129,7 +161,7 @@ def handle_heat_capacity():
     if choice == "1":
         cp_value = get_float("Enter constant Cp value (J/kg·K): ")
         print()
-        
+
         format_section("Inputs")
         format_label("Constant Cp value", cp_value, "J/kg·K")
 
@@ -148,7 +180,9 @@ def handle_heat_capacity():
         error_message()
         return
 
-def handle_heat_exchanger_energy_balance():
+
+def handle_heat_exchanger_energy_balance() -> None:
+    """Collect inputs for a single-stream heat exchanger balance and display the result."""
     print("\n=== Heat Exchanger Energy Balance ===")
     print("Calculate heat duty using one stream (hot or cold).")
 
@@ -157,7 +191,7 @@ def handle_heat_exchanger_energy_balance():
     t_in = get_float("Enter inlet temperature (°C): ")
     t_out = get_float("Enter outlet temperature (°C): ")
     print()
-    
+
     format_section("Inputs")
     format_label("Mass flow rate", mass_flow, "kg/s")
     format_label("Specific heat capacity", cp, "J/kg•K")
@@ -170,7 +204,7 @@ def handle_heat_exchanger_energy_balance():
     if not check_positive(cp, "specific heat capacity"):
         error_message()
         return
-    
+
     result = heat_exchanger_energy_balance(mass_flow, cp, t_in, t_out)
 
     print()
@@ -179,7 +213,9 @@ def handle_heat_exchanger_energy_balance():
     print("Note: Positive = heating, Negative = cooling.")
     success_message()
 
-def handle_two_stream_heat_exchanger_balance():
+
+def handle_two_stream_heat_exchanger_balance() -> None:
+    """Collect inputs for hot and cold streams, validate them, and display the two-stream balance."""
     print("\n=== Two-Stream Heat Exchanger Energy Balance ===")
 
     print("\n--- Hot Stream ---")
@@ -188,7 +224,7 @@ def handle_two_stream_heat_exchanger_balance():
     t_hot_in = get_float("Enter hot stream inlet temperature (°C): ")
     t_hot_out = get_float("Enter hot stream outlet temperature (°C): ")
     print()
-    
+
     format_section("Inputs")
     format_label("Mass flow rate", m_hot, "kg/s")
     format_label("Specific heat capacity", cp_hot, "J/kg•K")
@@ -201,7 +237,7 @@ def handle_two_stream_heat_exchanger_balance():
     t_cold_in = get_float("Enter cold stream inlet temperature (°C): ")
     t_cold_out = get_float("Enter cold stream outlet temperature (°C): ")
     print()
-    
+
     format_section("Inputs")
     format_label("Mass flow rate", m_cold, "kg/s")
     format_label("Specific heat capacity", cp_cold, "J/kg•K")
@@ -226,16 +262,16 @@ def handle_two_stream_heat_exchanger_balance():
     if not check_temperature_direction(t_cold_in, t_cold_out, "cold"):
         error_message()
         return
-    q_hot, q_cold, imbalance = two_stream_heat_exchanger_balance(m_hot, cp_hot, t_hot_in, t_hot_out, m_cold, cp_cold, t_cold_in, t_cold_out)
+    q_hot, q_cold, imbalance = two_stream_heat_exchanger_balance(
+        m_hot, cp_hot, t_hot_in, t_hot_out, m_cold, cp_cold, t_cold_in, t_cold_out
+    )
     print()
     format_section("Results")
     format_result("Hot-side duty", q_hot, "W")
     format_result("Cold-side duty", q_cold, "W")
     format_result("Energy balance", imbalance, "W")
-    success_message(
-
-    )
+    success_message()
     if abs(imbalance) < 1e-6:
         print("\nEnergy is balanced.")
     else:
-        print("\nEnergy balance is NOT balanced.") 
+        print("\nEnergy balance is NOT balanced.")
