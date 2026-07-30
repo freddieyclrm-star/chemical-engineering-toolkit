@@ -100,8 +100,11 @@ def handle_sensible_heat() -> None:
     if not check_positive(cp, "specific heat capacity"):
         error_message()
         return
-
-    result = sensible_heat(mass_flow, cp, t_in, t_out)
+    try:
+        result = sensible_heat(mass_flow, cp, t_in, t_out)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
     print()
     format_section("Results")
     format_result("Sensible heat duty", result, "W")
@@ -125,7 +128,12 @@ def handle_latent_heat() -> None:
     if not check_non_negative(latent_heat_value, "latent heat value"):
         error_message()
         return
-    result = latent_heat(mass_flow, latent_heat_value)
+    try:
+        result = latent_heat(mass_flow, latent_heat_value)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
+
     print()
     format_section("Results")
     format_result("Latent heat duty", result, "W")
@@ -142,8 +150,12 @@ def handle_reaction_enthalpy() -> None:
     format_section("Inputs")
     format_label("Reaction rate", reaction_rate, "mol/s")
     format_label("Reaction enthalpy ΔH", delta_h_reaction, "J/mol")
+    try:
+        result = reaction_enthalpy(reaction_rate, delta_h_reaction)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
-    result = reaction_enthalpy(reaction_rate, delta_h_reaction)
     print()
     format_section("Results")
     format_result("Reaction enthalpy duty", result, "W")
@@ -204,8 +216,11 @@ def handle_heat_exchanger_energy_balance() -> None:
     if not check_positive(cp, "specific heat capacity"):
         error_message()
         return
-
-    result = heat_exchanger_energy_balance(mass_flow, cp, t_in, t_out)
+    try:
+        result = heat_exchanger_energy_balance(mass_flow, cp, t_in, t_out)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
     print()
     format_section("Results")
@@ -262,9 +277,14 @@ def handle_two_stream_heat_exchanger_balance() -> None:
     if not check_temperature_direction(t_cold_in, t_cold_out, "cold"):
         error_message()
         return
-    q_hot, q_cold, imbalance = two_stream_heat_exchanger_balance(
-        m_hot, cp_hot, t_hot_in, t_hot_out, m_cold, cp_cold, t_cold_in, t_cold_out
-    )
+    try:
+        q_hot, q_cold, imbalance = two_stream_heat_exchanger_balance(
+            m_hot, cp_hot, t_hot_in, t_hot_out, m_cold, cp_cold, t_cold_in, t_cold_out
+        )
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
+
     print()
     format_section("Results")
     format_result("Hot-side duty", q_hot, "W")

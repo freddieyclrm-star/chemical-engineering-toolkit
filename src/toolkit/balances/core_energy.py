@@ -1,3 +1,13 @@
+from toolkit.utils.input_validation import (
+    validate_mass_flow,
+    validate_cp,
+    assert_temperature_range,
+    validate_non_negative,
+    validate_numeric,
+    validate_temperature_direction,
+)
+
+
 def sensible_heat(mass_flow: float, cp: float, t_in: float, t_out: float) -> float:
     """
     Calculate sensible heat duty.
@@ -21,6 +31,15 @@ def sensible_heat(mass_flow: float, cp: float, t_in: float, t_out: float) -> flo
     float
         Heat duty (W).
 
+    Raises
+    ------
+    TypeError
+        If any input is not numeric.
+    ValueError
+        If mass flow is negative, cp is non-positive, or temperatures are below absolute zero.
+    AssertionError
+        If constant-cp or no-phase-change assumptions are violated.
+
     References
     ----------
     - Heat transfer fundamentals: Q = m * Cp * ΔT
@@ -32,6 +51,12 @@ def sensible_heat(mass_flow: float, cp: float, t_in: float, t_out: float) -> flo
     - Pressure effects on heat capacity are negligible.
     - No phase change occurs.
     """
+
+    validate_mass_flow(mass_flow, "Mass flow rate")
+    validate_cp(cp, "Specific heat capacity")
+    assert_temperature_range(t_in, "Inlet temperature")
+    assert_temperature_range(t_out, "Outlet temperature")
+
     return mass_flow * cp * (t_out - t_in)
 
 
@@ -54,6 +79,13 @@ def latent_heat(mass_flow: float, latent_heat_value: float) -> float:
     float
         Heat duty (W).
 
+    Raises
+    ------
+    TypeError
+        If any input is not numeric.
+    ValueError
+        If mass flow is negative or latent heat value is negative.
+
     References
     ----------
     - Latent heat transfer: Q = m * λ
@@ -65,6 +97,10 @@ def latent_heat(mass_flow: float, latent_heat_value: float) -> float:
     - Latent heat value is constant at the operating conditions.
     - All mass undergoing phase change.
     """
+
+    validate_mass_flow(mass_flow, "Mass flow rate")
+    validate_non_negative(latent_heat_value, "Latent heat value")
+
     return mass_flow * latent_heat_value
 
 
@@ -87,6 +123,13 @@ def reaction_enthalpy(reaction_rate: float, delta_h_reaction: float) -> float:
     float
         Heat duty (W).
 
+    Raises
+    ------
+    TypeError
+        If any input is not numeric.
+    ValueError
+        If reaction rate or heat of reaction is negative.
+
     References
     ----------
     - Reaction heat: Q = r * ΔH_rxn
@@ -97,6 +140,10 @@ def reaction_enthalpy(reaction_rate: float, delta_h_reaction: float) -> float:
     - Reaction goes to completion at specified rate.
     - Heat of reaction is constant over the operating range.
     """
+
+    validate_non_negative(reaction_rate, "Reaction rate")
+    validate_numeric(delta_h_reaction, "Enthalpy of reaction")
+
     return reaction_rate * delta_h_reaction
 
 
@@ -114,11 +161,19 @@ def cp_constant(cp_value: float) -> float:
     float
         Specific heat capacity (J/kg·K).
 
+    Raises
+    ------
+    TypeError
+        If cp_value is not numeric.
+
     Assumptions
     -----------
     - Specific heat capacity does not vary with temperature or pressure.
     - Value provided is applicable for the operating range.
     """
+
+    validate_cp(cp_value, "Specific heat capacity")
+
     return cp_value
 
 
@@ -159,6 +214,12 @@ def heat_exchanger_energy_balance(
     - No phase change occurs during heat exchange.
     - Kinetic and potential energy changes are negligible.
     """
+
+    validate_mass_flow(mass_flow, "Mass flow rate")
+    validate_cp(cp, "Specific heat capacity")
+    assert_temperature_range(t_in, "Inlet temperature")
+    assert_temperature_range(t_out, "Outlet temperature")
+
     return mass_flow * cp * (t_out - t_in)
 
 
@@ -209,6 +270,15 @@ def two_stream_heat_exchanger_balance(
         Q_cold : Heat duty on cold side (W).
         imbalance : Energy balance check (W), should be ~0.
 
+    Raises
+    ------
+    TypeError
+        If any input is not numeric.
+    ValueError
+        If mass flow rates are negative, heat capacities are non-positive, or temperature values are invalid for the specified direction.
+    AssertionError
+        If temperatures fall outside the supported range.
+
     References
     ----------
     - Energy balance: Q_hot + Q_cold = 0 (ideal case)
@@ -226,5 +296,16 @@ def two_stream_heat_exchanger_balance(
     q_cold = m_cold * cp_cold * (t_cold_out - t_cold_in)
 
     imbalance = q_hot + q_cold  # should be ~0
+
+    validate_mass_flow(m_hot, "Hot stream mass flow rate")
+    validate_cp(cp_hot, "Hot stream specific heat capacity")
+    assert_temperature_range(t_hot_in, "Hot stream inlet temperature")
+    assert_temperature_range(t_hot_out, "Hot stream outlet temperature")
+    validate_mass_flow(m_cold, "Cold stream mass flow rate")
+    validate_cp(cp_cold, "Cold stream specific heat capacity")
+    assert_temperature_range(t_cold_in, "Cold stream inlet temperature")
+    assert_temperature_range(t_cold_out, "Cold stream outlet temperature")
+    validate_temperature_direction(t_hot_in, t_hot_out, "hot")
+    validate_temperature_direction(t_cold_in, t_cold_out, "cold")
 
     return q_hot, q_cold, imbalance

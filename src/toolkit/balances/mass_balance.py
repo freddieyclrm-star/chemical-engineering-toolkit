@@ -99,8 +99,12 @@ def handle_single_stream_balance() -> None:
     if not check_non_negative(m_in, "Inlet mass flow rate"):
         error_message()
         return
+    try:
+        result = single_stream_balance(m_in)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
-    result = single_stream_balance(m_in)
     print()
     format_section("Results")
     format_result("Single stream balance", result, "kg/s")
@@ -125,8 +129,13 @@ def handle_multi_stream_balance() -> None:
     format_section("Inputs")
     format_label("In streams' mass flow rate", in_streams, "")
     format_label("Out streams' mass flow rate", out_streams, "")
+    # need to check non negative mass flow rate for the lists
+    try:
+        result = multi_stream_balance(in_streams, out_streams)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
-    result = multi_stream_balance(in_streams, out_streams)
     print()
     format_section("Results")
     format_result("Net mass balance", result, "kg/s")
@@ -159,8 +168,12 @@ def handle_reaction_stoichiometry_balance() -> None:
     format_label("Species", species_list, "")
     format_label("Coefficients", coeff_list, "")
     format_label("Reaction rate", reaction_rates, "mol/s")
+    try:
+        result = reaction_stoichiometry_balance(stoich_coeffs, reaction_rates)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
-    result = reaction_stoichiometry_balance(stoich_coeffs, reaction_rates)
     print()
     format_section("Results")
     print("Rate of consumption/production for each species (mol/s): ")
@@ -193,8 +206,12 @@ def handle_component_mass_fractions() -> None:
     format_section("Inputs")
     format_label("Species", species_list, "")
     format_label("Mass fo each species", mass_list, "kg/s")
+    try:
+        result = mass_fractions(masses)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
-    result = mass_fractions(masses)
     format_section("Results")
     print("Mass fractions for each species: ")
     for sp, fraction in result.items():
@@ -222,8 +239,12 @@ def handle_mixture_mass_flow_calculations() -> None:
     if not check_non_negative(volumetric_flow, "Volumetric flow rate"):
         error_message()
         return
+    try:
+        result = mixture_mass_flow(density, volumetric_flow)
+    except Exception as exc:
+        print("\nAn error occurred during calculation:")
+        print(f"→ {exc}")
 
-    result = mixture_mass_flow(density, volumetric_flow)
     print()
     format_section("Results")
     format_result("Mixture mass flow rate", result, "kg/s")

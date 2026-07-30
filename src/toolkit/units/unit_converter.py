@@ -1,5 +1,9 @@
 from toolkit.units.conversion import Converter
-from toolkit.utils.input_validation import get_float, check_non_negative
+from toolkit.utils.input_validation import (
+    get_float,
+    check_non_negative,
+    validate_unit_supported,
+)
 from toolkit.utils.formatting import (
     format_label,
     format_result,
@@ -7,6 +11,7 @@ from toolkit.utils.formatting import (
     success_message,
     error_message,
 )
+from toolkit.units.unit_definitions import UNITS
 
 
 def handler_name() -> None:
@@ -85,11 +90,27 @@ def handle_length() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["length"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -102,6 +123,16 @@ def handle_mass() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["mass"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
@@ -110,7 +141,13 @@ def handle_mass() -> None:
         return
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -123,11 +160,27 @@ def handle_temperature() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["temperature"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -140,6 +193,16 @@ def handle_volume() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["volume"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
@@ -148,7 +211,13 @@ def handle_volume() -> None:
         return
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -161,6 +230,16 @@ def handle_pressure() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["pressure"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
@@ -169,7 +248,13 @@ def handle_pressure() -> None:
         return
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -182,6 +267,16 @@ def handle_energy() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["energy"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
@@ -190,7 +285,13 @@ def handle_energy() -> None:
         return
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -203,6 +304,16 @@ def handle_power() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["power"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
@@ -211,7 +322,13 @@ def handle_power() -> None:
         return
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -224,6 +341,16 @@ def handle_time() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["time"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
@@ -232,7 +359,13 @@ def handle_time() -> None:
         return
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()
@@ -245,11 +378,27 @@ def handle_speed() -> None:
     to_unit = input("Enter the unit to convert to: ").strip()
     print()
 
+    supported_units = UNITS["speed"].keys()
+    try:
+        validate_unit_supported(from_unit, supported_units, "From unit")
+        validate_unit_supported(to_unit, supported_units, "To unit")
+    except Exception as exc:
+        print("\nUnit error:")
+        print(f"→ {exc}")
+        error_message()
+        return
+
     format_section("Inputs")
     format_label("From unit", value, from_unit)
 
     converter = Converter()
-    result = converter.convert(value, from_unit, to_unit)
+    try:
+        result = converter.convert(value, from_unit, to_unit)
+    except Exception as exc:
+        print("\nConversion error:")
+        print(f"→ {exc}")
+        error_message()
+        return
     format_section("Results")
     format_result("Converted", result, to_unit)
     success_message()

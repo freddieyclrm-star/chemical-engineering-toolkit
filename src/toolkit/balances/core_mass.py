@@ -1,3 +1,13 @@
+from toolkit.utils.input_validation import (
+    validate_mass_flow,
+    validate_numeric,
+    validate_stoich_coeff,
+    validate_mass_fraction,
+    validate_density,
+    validate_volumetric_flow,
+)
+
+
 def single_stream_balance(m_in: float) -> float:
     """Return the outlet mass for a single-stream mass balance.
 
@@ -16,12 +26,20 @@ def single_stream_balance(m_in: float) -> float:
     float
         Mass leaving the system (equal to m_in for a steady single-stream balance).
 
+    Raises
+    ------
+    ValueError
+        If m_in is negative or not numeric.
+
     References
     ----------
     Single-stream mass conservation: m_in = m_out. See Cengel, Y. A., &
     Boles, M. A. (2015). Thermodynamics: An Engineering Approach, or Bird, R. B.,
     Stewart, W. E., & Lightfoot, E. N. (2002). Transport Phenomena.
     """
+
+    validate_mass_flow(m_in, "Inlet mass flow rate")
+
     return m_in
 
 
@@ -44,6 +62,11 @@ def multi_stream_balance(in_streams: list, out_streams: list) -> float:
     float
         Net mass accumulation: sum(in_streams) - sum(out_streams). Positive means net inflow.
 
+    Raises
+    ------
+    ValueError
+        If the inlet or outlet stream are negative or not numeric.
+
     References
     ----------
     Net mass balance for multiple streams: sum(m_in) - sum(m_out). See Cengel,
@@ -51,8 +74,13 @@ def multi_stream_balance(in_streams: list, out_streams: list) -> float:
     Felder, R. M., & Rousseau, R. W. (2005). Elementary Principles of Chemical
     Processes.
     """
+
+    validate_mass_flow(in_streams, "List of inlet mass flow rates")
+    validate_mass_flow(out_streams, "List of outlet mass flow rates")
+
     total_in = sum(in_streams)
     total_out = sum(out_streams)
+
     return total_in - total_out
 
 
@@ -78,12 +106,21 @@ def reaction_stoichiometry_balance(
     dict[str, float]
         Dictionary mapping species to their production (positive) or consumption (negative) rates.
 
+    Raises
+    ------
+    ValueError
+        If the stoichiometric coefficients are not numeric or reaction_rates is not numeric.
+
     References
     ----------
     Uses stoichiometric relation r_i = nu_i * R, where nu_i are stoichiometric
     coefficients and R is the reaction rate. See Fogler, H. S. (2016).
     Elements of Chemical Reaction Engineering.
     """
+
+    validate_stoich_coeff(stoich_coeffs, "Stoichiometric coefficients")
+    validate_numeric(reaction_rates, "Overall reaction rate")
+
     return {species: nu * reaction_rates for species, nu in stoich_coeffs.items()}
 
 
@@ -107,15 +144,15 @@ def mass_fractions(masses: dict[str, float]) -> dict[str, float]:
     Raises
     ------
     ValueError
-        If the total mass is zero.
+        If the mass data are negative or not numeric or the total mass is zero.
 
     References
     ----------
     Mass fraction definition: w_i = m_i / sum(m_i). See Bird et al., Transport Phenomena (2002).
     """
+
+    validate_mass_fraction(masses, "Mass flow rates")
     total_mass = sum(masses.values())
-    if total_mass == 0:
-        raise ValueError("Total mass must be non-zero to compute mass fractions")
     return {species: m / total_mass for species, m in masses.items()}
 
 
@@ -139,10 +176,18 @@ def mixture_mass_flow(density: float, volumetric_flow: float) -> float:
     float
         Mass flow rate (kg/s).
 
+    Raises
+    ------
+    ValueError
+        If density or volumetric_flow is negative or not numeric for mass-flow calculations.
+
     References
     ----------
     Mass flow via density and volumetric flow: m_dot = rho * Q. See Cengel, Y. A., &
     Boles, M. A. (2015). Thermodynamics: An Engineering Approach, or standard
     transport texts such as Bird et al. (2002).
     """
+    validate_density(density, "Fluid density")
+    validate_volumetric_flow(volumetric_flow, "Volumetric flow rate")
+
     return density * volumetric_flow
