@@ -12,6 +12,8 @@ from toolkit.utils.formatting import (
     format_section,
     success_message,
     error_message,
+    clear_screen,
+    invalid_choice,
 )
 
 
@@ -65,7 +67,7 @@ def run_mass_balance_menu() -> None:
         elif choice == "5" or choice == "mixture mass flow calculations":
             handle_mixture_mass_flow_calculations()
         else:
-            print("Invalid choice. Please try again.")
+            invalid_choice()
 
 
 def print_mass_balance_menu() -> None:
@@ -90,6 +92,7 @@ def handle_single_stream_balance() -> None:
     Prompts the user for an inlet mass flow rate, validates it and prints the
     computed single stream balance result.
     """
+    clear_screen()
     m_in = get_float("Enter inlet mass flow rate (kg/s): ")
     print()
 
@@ -117,6 +120,7 @@ def handle_multi_stream_balance() -> None:
     Prompts the user for inlet and outlet stream mass flows and prints the
     net mass balance.
     """
+    clear_screen()
     print("\nEnter inlet mass flows rate (kg/s), separated by commas: ")
     in_values = input("Inlet streams: ").strip().split(",")
     in_streams = [float(x) for x in in_values]
@@ -129,7 +133,14 @@ def handle_multi_stream_balance() -> None:
     format_section("Inputs")
     format_label("In streams' mass flow rate", in_streams, "")
     format_label("Out streams' mass flow rate", out_streams, "")
-    # need to check non negative mass flow rate for the lists
+
+    if not check_non_negative(in_streams, "Inlet mass flow rate"):
+        error_message()
+        return
+    if not check_non_negative(out_streams, "Outlet mass flow rate"):
+        error_message()
+        return
+
     try:
         result = multi_stream_balance(in_streams, out_streams)
     except Exception as exc:
@@ -148,6 +159,7 @@ def handle_reaction_stoichiometry_balance() -> None:
     Prompts for species names and stoichiometric coefficients, reaction rate
     and prints the rate of consumption/production for each species.
     """
+    clear_screen()
     print("\nEnter species involved, separated by commas: ")
     species = input("Species: ").strip().split(",")
     species_list = [s.strip() for s in species]
@@ -188,6 +200,7 @@ def handle_component_mass_fractions() -> None:
     Prompts for species and their masses, validates input lengths and prints
     mass fractions for each species.
     """
+    clear_screen()
     print("\nEnter species involved, separated by commas: ")
     species = input("Species: ").strip().split(",")
     species_list = [s.strip() for s in species]
@@ -225,6 +238,7 @@ def handle_mixture_mass_flow_calculations() -> None:
     Prompts for mixture density and volumetric flow, validates them and
     prints the resulting mixture mass flow rate.
     """
+    clear_screen()
     density = get_float("Enter mixture density (kg/m^3): ")
     volumetric_flow = get_float("Enter volumetric flow rate (m^3/s): ")
     print()

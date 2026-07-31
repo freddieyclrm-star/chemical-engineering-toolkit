@@ -1,6 +1,7 @@
 from toolkit.balances import mass_balance, energy_balance
 from toolkit.constants import engineering_constants, scientific_constants
 from toolkit.units import unit_converter
+from toolkit.utils.formatting import invalid_choice, clear_screen
 
 
 def run_main_menu() -> None:
@@ -26,7 +27,7 @@ def run_main_menu() -> None:
         elif choice == "5" or choice == "energy balance":
             handle_energy_balance()
         else:
-            print("Invalid choice. Please try again.")
+            invalid_choice()
 
 
 def print_main_menu() -> None:
@@ -47,24 +48,29 @@ def print_main_menu() -> None:
 
 def handle_unit_converter() -> None:
     """Handle the unit converter menu selection."""
+    clear_screen()
     unit_converter.run_unit_menu()
 
 
 def handle_scientific_constants() -> None:
     """Handle the scientific constants menu selection."""
+    clear_screen()
     scientific_constants.run_scientific_menu()
 
 
 def handle_engineering_constants() -> None:
     """Handle the engineering constants menu selection."""
+    clear_screen()
     engineering_constants.run_engineering_menu()
 
 
 def handle_mass_balance() -> None:
     """Handle the mass balance menu selection."""
+    clear_screen()
     mass_balance.run_mass_balance_menu()
 
 
 def handle_energy_balance() -> None:
     """Handle the energy balance menu selection."""
+    clear_screen()
     energy_balance.run_energy_balance_menu()

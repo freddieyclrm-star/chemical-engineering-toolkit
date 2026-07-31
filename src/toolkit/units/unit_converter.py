@@ -10,6 +10,8 @@ from toolkit.utils.formatting import (
     format_section,
     success_message,
     error_message,
+    clear_screen,
+    invalid_choice,
 )
 from toolkit.units.unit_definitions import UNITS
 
@@ -63,7 +65,7 @@ def run_unit_menu() -> None:
         elif choice == "9" or choice.lower() == "speed":
             handle_speed()
         else:
-            print("Invalid choice. Please try again.")
+            invalid_choice()
 
 
 def print_unit_menu() -> None:
@@ -85,6 +87,7 @@ def print_unit_menu() -> None:
 
 def handle_length() -> None:
     """Prompt for a length conversion and display the converted result."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -118,6 +121,7 @@ def handle_length() -> None:
 
 def handle_mass() -> None:
     """Prompt for a mass conversion, validate the input, and display results."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -155,6 +159,7 @@ def handle_mass() -> None:
 
 def handle_temperature() -> None:
     """Prompt for a temperature conversion and display the converted result."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -188,6 +193,7 @@ def handle_temperature() -> None:
 
 def handle_volume() -> None:
     """Prompt for a volume conversion, validate the input, and display results."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -225,6 +231,7 @@ def handle_volume() -> None:
 
 def handle_pressure() -> None:
     """Prompt for a pressure conversion, validate the input, and display results."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -262,6 +269,7 @@ def handle_pressure() -> None:
 
 def handle_energy() -> None:
     """Prompt for an energy conversion, validate the input, and display results."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -299,6 +307,7 @@ def handle_energy() -> None:
 
 def handle_power() -> None:
     """Prompt for a power conversion, validate the input, and display results."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -336,6 +345,7 @@ def handle_power() -> None:
 
 def handle_time() -> None:
     """Prompt for a time conversion, validate the input, and display results."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
@@ -373,6 +383,7 @@ def handle_time() -> None:
 
 def handle_speed() -> None:
     """Prompt for a speed conversion and display the converted result."""
+    clear_screen()
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()

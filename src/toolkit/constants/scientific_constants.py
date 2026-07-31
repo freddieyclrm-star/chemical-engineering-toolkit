@@ -1,3 +1,6 @@
+from toolkit.utils.formatting import clear_screen, invalid_choice
+
+
 def print_scientific_menu() -> None:
     """Print the scientific constants menu to stdout.
 
@@ -58,7 +61,7 @@ def run_scientific_menu() -> None:
         elif choice == "11" or choice == "molar gas constant":
             handle_molar_gas_constant()
         else:
-            print("Invalid choice. Please try again.")
+            invalid_choice()
 
 
 def handle_speed_of_light() -> None:
@@ -69,6 +72,7 @@ def handle_speed_of_light() -> None:
     References:
         CODATA 2018 value for the speed of light from NIST and IUPAP.
     """
+    clear_screen()
     print("Speed of Light: 299,792,458 m/s")
 
 
@@ -78,6 +82,7 @@ def handle_planck_constant() -> None:
     References:
         CODATA 2018 fixed constant value from NIST.
     """
+    clear_screen()
     print("Planck Constant: 6.62607015 × 10^-34 J·s")
 
 
@@ -87,6 +92,7 @@ def handle_boltzmann_constant() -> None:
     References:
         CODATA 2018 fixed constant value from NIST.
     """
+    clear_screen()
     print("Boltzmann Constant: 1.380649 × 10^-23 J/K")
 
 
@@ -96,6 +102,7 @@ def handle_newtons_gravitational_constant() -> None:
     References:
         CODATA 2018 recommended value from NIST.
     """
+    clear_screen()
     print("Newton's Gravitational Constant: 6.6743015 × 10^-11 m^3/(kg·s^2)")
 
 
@@ -105,6 +112,7 @@ def handle_stefan_boltzmann_constant() -> None:
     References:
         CODATA 2018 recommended value from NIST.
     """
+    clear_screen()
     print("Stefan-Boltzmann Constant: 5.670374419 × 10^-8 W/(m^2·K^4)")
 
 
@@ -114,6 +122,7 @@ def handle_elementary_charge() -> None:
     References:
         CODATA 2018 fixed constant value from NIST.
     """
+    clear_screen()
     print("Elementary Charge: 1.602176634 × 10^-19 C")
 
 
@@ -125,6 +134,7 @@ def handle_mass_of_electron() -> None:
     References:
         CODATA 2018 recommended value from NIST.
     """
+    clear_screen()
     print("Mass of Electron: 9.109383713928 × 10^-31 kg")
 
 
@@ -136,6 +146,7 @@ def handle_mass_of_proton() -> None:
     References:
         CODATA 2018 recommended value from NIST.
     """
+    clear_screen()
     print("Mass of Proton: 1.6726219259552 × 10^-27 kg")
 
 
@@ -147,6 +158,7 @@ def handle_mass_of_neutron() -> None:
     References:
         CODATA 2018 recommended value from NIST.
     """
+    clear_screen()
     print("Mass of Neutron: 1.6749275005685 × 10^-27 kg")
 
 
@@ -156,6 +168,7 @@ def handle_avogadros_constant() -> None:
     References:
         CODATA 2018 fixed constant value from NIST.
     """
+    clear_screen()
     print("Avogadro's Constant: 6.02214076 × 10^23 mol^-1")
 
 
@@ -165,4 +178,5 @@ def handle_molar_gas_constant() -> None:
     References:
         CODATA 2018 recommended value from NIST.
     """
+    clear_screen()
     print("Molar Gas Constant: 8.31446261815324 J/(mol·K)")

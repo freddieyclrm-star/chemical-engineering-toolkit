@@ -18,6 +18,8 @@ from toolkit.utils.formatting import (
     format_section,
     success_message,
     error_message,
+    clear_screen,
+    invalid_choice,
 )
 
 
@@ -62,7 +64,7 @@ def run_energy_balance_menu() -> None:
         elif choice == "6" or choice == "two streams heat exchanger balance":
             handle_two_stream_heat_exchanger_balance()
         else:
-            print("Invalid choice. Please try again.")
+            invalid_choice()
 
 
 def print_energy_balance_menu() -> None:
@@ -80,6 +82,7 @@ def print_energy_balance_menu() -> None:
 
 def handle_sensible_heat() -> None:
     """Collect inputs for sensible heat, validate them, and display the computed duty."""
+    clear_screen()
     print("\n=== Sensible Heat Calculation ===")
     mass_flow = get_float("Enter mass flow rate (kg/s): ")
     cp = get_float("Enter specific heat capacity (J/kg•K): ")
@@ -113,6 +116,7 @@ def handle_sensible_heat() -> None:
 
 def handle_latent_heat() -> None:
     """Collect latent heat inputs, validate them, and display the result."""
+    clear_screen()
     print("\n=== Latent Heat Calculation ===")
     mass_flow = get_float("Enter mass flow rate (kg/s): ")
     latent_heat_value = get_float("Enter latent heat value (J/kg): ")
@@ -142,6 +146,7 @@ def handle_latent_heat() -> None:
 
 def handle_reaction_enthalpy() -> None:
     """Collect reaction enthalpy inputs and display the calculated duty."""
+    clear_screen()
     print("\n=== Reaction Enthalpy Calculation ===")
     reaction_rate = get_float("Enter reaction rate (mol/s): ")
     delta_h_reaction = get_float("Enter reaction enthalpy ΔH (J/mol): ")
@@ -164,7 +169,9 @@ def handle_reaction_enthalpy() -> None:
 
 def handle_heat_capacity() -> None:
     """Handle heat capacity model selection and return the appropriate Cp value."""
+    clear_screen()
     print("\n=== Heat Capacity (Cp) Calculations ===")
+    print("0. Back")
     print("1. Constant Cp")
     print("2. Polynomial Cp (Coming Soon)")
 
@@ -188,13 +195,14 @@ def handle_heat_capacity() -> None:
     elif choice == "2":
         print("\nPolynomial Cp model COMING SOON.")
     else:
-        print("Invalid choice.")
+        invalid_choice()
         error_message()
         return
 
 
 def handle_heat_exchanger_energy_balance() -> None:
     """Collect inputs for a single-stream heat exchanger balance and display the result."""
+    clear_screen()
     print("\n=== Heat Exchanger Energy Balance ===")
     print("Calculate heat duty using one stream (hot or cold).")
 
@@ -231,6 +239,7 @@ def handle_heat_exchanger_energy_balance() -> None:
 
 def handle_two_stream_heat_exchanger_balance() -> None:
     """Collect inputs for hot and cold streams, validate them, and display the two-stream balance."""
+    clear_screen()
     print("\n=== Two-Stream Heat Exchanger Energy Balance ===")
 
     print("\n--- Hot Stream ---")

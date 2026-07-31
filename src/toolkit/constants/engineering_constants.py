@@ -1,3 +1,6 @@
+from toolkit.utils.formatting import clear_screen, invalid_choice
+
+
 def print_engineering_menu() -> None:
     """Print the engineering constants menu options.
 
@@ -31,7 +34,7 @@ def run_engineering_menu() -> None:
         elif choice == "4" or choice == "density of air":
             handle_density_of_air()
         else:
-            print("Invalid choice. Please try again.")
+            invalid_choice()
 
 
 def handle_atmospheric_pressure() -> None:
@@ -44,6 +47,7 @@ def handle_atmospheric_pressure() -> None:
     References:
     - NIST Standard Reference Database: standard atmospheric pressure at sea level.
     """
+    clear_screen()
     print("Atmospheric Pressure: 101,325 Pa")
 
 
@@ -57,6 +61,7 @@ def handle_specific_heat_capacity() -> None:
     References:
     - IAPWS / CRC Handbook of Chemistry and Physics: specific heat capacity of liquid water.
     """
+    clear_screen()
     print("Specific Heat Capacity of Water: 4.184 J/g°C")
 
 
@@ -71,6 +76,7 @@ def handle_density_of_water() -> None:
     References:
     - IUPAC / CRC Handbook of Chemistry and Physics: density of pure water at 4°C.
     """
+    clear_screen()
     print("Density of Water: 1,000 kg/m³")
 
 
@@ -85,4 +91,5 @@ def handle_density_of_air() -> None:
     References:
     - ICAO standard atmosphere: density of dry air at sea level.
     """
+    clear_screen()
     print("Density of Air: 1.225 kg/m³")
