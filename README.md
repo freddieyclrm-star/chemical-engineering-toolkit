@@ -1,107 +1,152 @@
 # ⭐ Chemical Engineering Toolkit — Version 0.1.0
+![Tests](https://github.com/freddieyclrm-star/chemical-engineering-toolkit/actions/workflows/tests.yml/badge.svg)
+![Python](https://img.shields.io/badge/Python-3.12-blue.svg)
+![License](https://img.shields.io/github/license/freddieyclrm-star/chemical-engineering-toolkit.svg)  
 *A foundational engineering software platform developed alongside my Chemical Engineering degree.*
 
 ## 📘 About
-The **Chemical Engineering Toolkit** is a growing collection of engineering utilities built in Python.  
-This project will expand throughout my degree into thermodynamics, fluid mechanics, heat transfer, reaction engineering, and process design.
+The Engineering Toolkit provides a growing collection of engineering utilities built in Python.
+Version 0.1.1 focuses on:
 
-## ⚙️ Features (v0.1.0)
-1. **Command‑Line Interface**
-A simple, modular CLI that acts as the entry point for all tools.
+- Correctness
 
-2. **Unit Converter**
-Supports essential engineering conversions:
+- Documentation quality
 
-    - Temperature (°C, K, °F)
+- Validation
 
-    - Pressure (Pa, kPa, bar, atm, psi, MPa, torr)
+- Testing
 
-    - Mass (g, kg, tonne, mg, oz, lb)
+- CLI user experience
 
-    - Energy (J, kJ, MJ, kWh, Wh, cal, kcal)
+- Code style consistency
 
-    - Length (mm, cm, m, km, in, ft, yard, mile)
+- Automation (CI + pre‑commit)
 
-    - Speed (m/s, km/h, mph)
+This release prepares the foundation for larger engineering modules in future versions.
 
-    - Volume (mL, L, m3, gallon, quart, pint, cup)
+## ⚙️ Features (v0.1.1)
+⚙️ Features (v0.1.1)  
+🔹 Full Type Hint Coverage
+All public functions now include complete type annotations:
 
-    - Time (s, min, h, day, week, month, year)
+- parameters
 
-    - Area (mm2, cm2, m2, km2, ft2, in2, ha, acre, mi2)
+- return types
 
-3. **Scientific Constants**
-Includes core scientific constants with documentation:
+- helper functions
 
-    - Gas constant
+- CLI menu functions
 
-    - Avogadro’s number
+- Improves readability, IDE support, and static analysis.
 
-    - Boltzmann constant
+🔹 Improved Docstrings (NumPy/SciPy Style)
+Every calculator, converter, and public function now includes:
 
-    - Planck constant
+- Purpose
 
-    - Speed of light
+- Equation
 
-    - Newton's Gravitational Constant
+- Assumptions
 
-    - Stefan-Boltzmann Constant
+- Inputs
 
-    - Elementary Charge
+- Outputs
 
-    - Mass of Electron
+- Raises
 
-    - Mass of Proton
+- References
 
-    - Mass of Neutron
+- Example
 
-4. **Engineering Constants**
-Common reference values with assumptions:
+This brings the toolkit up to academic documentation standards.
 
-    - Water density (20°C)
+🔹 Engineering Assumptions & References
+All engineering functions now document:
 
-    - Air density
+- physical assumptions
 
-    - Atmospheric pressure
+- modelling simplifications
 
-    - Specific heat capacities
+- reference values
 
-5. **Mass Balance Calculator**
-Steady‑state mass balance:
+- scientific sources
 
-    - Single stream
+🔹 Expanded Validation
+Validators now cover:
 
-    - Multiple streams
+- mass flow
 
-    - Reaction stoichiometry balance
+- cp
 
-    - Component mass fractions
+- temperature direction
 
-    - Mixture mass flow calculations
+- absolute zero
 
-6. **Energy Balance Calculator**
-Basic heating calculation:
+- unit support
 
-    - *Q = mcΔT* Calculation
+- stoichiometric species
 
-    - Latent Heat Calculation
+- reaction coefficients
 
-    - Reaction Enthalpy
+Engineering validators raise precise exceptions, while CLI validators provide user‑friendly messages.
 
-    - Specific Heat Capacity Calculation
+🔹 Testing & Regression Suite
+v0.1.1 introduces a full testing framework:
 
-    - Heat Exchanger Energy Balance
+- tests for every validator
 
-    - Two Streams Heat Exchanger Balance
+- tests for every engineering function
 
-7. **Automated Tests**
-Basic pytest suite covering:
+- tests for unit conversion
 
-    - Unit conversions
+- tests for reaction stoichiometry
 
-    - Mass balance
+- regression tests for all calculators
 
-    - Energy balance
+- “Why this fails” documentation for error cases
+
+This ensures long‑term stability and prevents silent regressions.
+
+🔹 CLI Improvements
+The command‑line interface now includes:
+
+- colour‑coded output
+
+- spacing helpers
+
+- section formatting
+
+- invalid choice handling
+
+- screen clearing
+
+- safe_run() wrapper for crash‑proof execution
+
+The CLI is now clean, readable, and professional.
+
+🔹 Code Quality & Style
+v0.1.1 introduces:
+
+- full PEP 8 cleanup
+
+- Black auto‑formatting
+
+- Ruff linting
+
+- optional flake8 support
+
+- pre‑commit hooks to enforce formatting before every commit
+
+Your codebase is now consistent and maintainable.
+
+🔹 Continuous Integration
+GitHub Actions automatically runs pytest on:
+
+- every push
+
+- every pull request
+
+This ensures the toolkit remains stable as it grows.
 
 ## 📂 Project Structure
 ```python
@@ -143,9 +188,10 @@ python src/main.py
 You will see:  
 
 ```python
+
 ================================
 Chemical Engineering Toolkit
-Version 0.1.0
+Version 0.1.1
 ================================
 Please select an option:
 0. Exit
@@ -154,6 +200,11 @@ Please select an option:
 3. Engineering Constants
 4. Mass Balance
 5. Energy Balance
+
+```
+## Tests
+```python
+python -m pytest
 ```
 ## 📚 Examples
 ### **Unit Conversion**
@@ -220,17 +271,19 @@ MIT License — see ```LICENSE``` for details.
 
 ## 🎓 Purpose
 This toolkit is part of my preparation for studying Chemical Engineering (MEng) at the University of Bath.
-Version 0.1.0 demonstrates:
+Version 0.1.1 demonstrates:
 
-- Structured Python
+- Professional documentation
 
-- Git/GitHub workflow
+- Robust engineering validation
 
-- Engineering equation translation
+- Full type hinting
 
-- Documentation
+- Regression‑tested engineering functions
 
-- Testing
+- Clean CLI UX
+
+- Automated CI
 
 - Maintainable architecture
 
@@ -238,45 +291,4 @@ Version 0.1.0 demonstrates:
 
 The Chemical Engineering Toolkit follows a structured, professional release cycle designed to build a strong foundation before expanding into more advanced engineering features.
 
-### 🔹 v0.1.1 — Quality & Stability Release (In Progress)
-Focus: Professionalise the codebase before adding new engineering features.
-
-**Code Quality**
-- Type hints across all modules  
-- Consistent NumPy/SciPy‑style docstrings  
-- Black formatting  
-- Ruff/Flake8 linting  
-- Removal of unused imports and dead code  
-
-**Engineering Quality**
-- Document assumptions for each calculator  
-- Add references for constants (CODATA, CRC Handbook, etc.)  
-- Verify unit consistency  
-- Improve engineering error messages  
-
-**Testing**
-- Invalid input tests  
-- Regression tests  
-- Increased coverage  
-- Clean‑environment test validation  
-
-**CLI & UX**
-- Improved menu formatting  
-- Better invalid input handling  
-- Standardised prompts and output  
-- Optional colour/screen‑clearing  
-
-**Documentation**
-- Expanded README (screenshots, examples, project tree)  
-- Standardised module documentation  
-- Assumptions, equations, references, examples  
-- Updated CHANGELOG  
-- Installation instructions review  
-
-**Release Engineering**
-- GitHub Actions for automated pytest  
-- Optional README badges  
-- Tag and publish v0.1.1  
-- Write release notes  
-
----
+### 🔹 v0.1.2 — PLANNING

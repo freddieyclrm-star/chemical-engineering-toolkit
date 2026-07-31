@@ -34,7 +34,7 @@ def print_main_menu() -> None:
     """Print the main menu options to the console."""
     print("\n================================")
     print("Chemical Engineering Toolkit")
-    print("Version 0.1.0")
+    print("Version 0.1.1")
     print("================================")
     print("Please select an option:")
     print("0. Exit")
