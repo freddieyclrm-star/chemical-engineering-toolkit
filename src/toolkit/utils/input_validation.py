@@ -321,6 +321,7 @@ def validate_mass_fraction(value: dict, name: str) -> None:
                 raise TypeError(
                     f"{name} must be a numeric value, list/tuple, or dict of numeric values."
                 )
+            validate_mass_flow(item, "")
 
     if sum(value.values()) == 0:
         raise ValueError("Total mass must be non-zero to compute mass fractions")
