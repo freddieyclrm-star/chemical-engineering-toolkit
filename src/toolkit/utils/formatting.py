@@ -21,7 +21,7 @@ def format_result(title: str, value: float, unit: str) -> None:
     """
     title = title + ":"
     print(f"{Colour.OKGREEN}{title:<20}{value:.3f} {unit}{Colour.ENDC}")
-    print()
+    spacer(1)
 
 
 def format_label(title: str, value, unit: str) -> None:
@@ -85,3 +85,11 @@ def spacer(lines: int = 1):
         lines: The number of blank lines to print.
     """
     print("\n" * lines)
+
+
+def safe_run(func):
+    try:
+        func()
+    except Exception as exc:
+        print(f"{Colour.FAIL}Unexpected error: {exc}{Colour.ENDC}")
+        input("Press Enter to continue...")

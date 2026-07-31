@@ -14,6 +14,8 @@ from toolkit.utils.formatting import (
     error_message,
     clear_screen,
     invalid_choice,
+    spacer,
+    safe_run,
 )
 
 
@@ -26,7 +28,7 @@ def handler_name() -> None:
     behavior (no real values are processed).
     """
     # Inputs section
-    print()
+    spacer(1)
     format_section("Inputs")
     format_label(...)
     format_label(...)
@@ -37,7 +39,7 @@ def handler_name() -> None:
         return
 
     # Results section
-    print()
+    spacer(1)
     format_section("Results")
     format_result(...)
     success_message()
@@ -57,15 +59,15 @@ def run_mass_balance_menu() -> None:
             print("Returning to Main Menu...")
             break
         elif choice == "1" or choice == "single-stream balance":
-            handle_single_stream_balance()
+            safe_run(handle_single_stream_balance)
         elif choice == "2" or choice == "multi-stream balance":
-            handle_multi_stream_balance()
+            safe_run(handle_multi_stream_balance)
         elif choice == "3" or choice == "reaction stoichiometry balance":
-            handle_reaction_stoichiometry_balance()
+            safe_run(handle_reaction_stoichiometry_balance)
         elif choice == "4" or choice == "component mass fractions":
-            handle_component_mass_fractions()
+            safe_run(handle_component_mass_fractions)
         elif choice == "5" or choice == "mixture mass flow calculations":
-            handle_mixture_mass_flow_calculations()
+            safe_run(handle_mixture_mass_flow_calculations)
         else:
             invalid_choice()
 
@@ -83,7 +85,7 @@ def print_mass_balance_menu() -> None:
     print("3. Reaction stoichiometry balance")
     print("4. Component mass fractions")
     print("5. Mixture mass flow calculations")
-    print()
+    spacer(1)
 
 
 def handle_single_stream_balance() -> None:
@@ -94,7 +96,7 @@ def handle_single_stream_balance() -> None:
     """
     clear_screen()
     m_in = get_float("Enter inlet mass flow rate (kg/s): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Inlet mass flow rate", m_in, "kg/s")
@@ -108,7 +110,7 @@ def handle_single_stream_balance() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Single stream balance", result, "kg/s")
     success_message()
@@ -128,7 +130,7 @@ def handle_multi_stream_balance() -> None:
     print("\nEnter outlet mass flows rate (kg/s), separated by commas: ")
     out_values = input("Outlet streams: ").strip().split(",")
     out_streams = [float(x) for x in out_values]
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("In streams' mass flow rate", in_streams, "")
@@ -147,7 +149,7 @@ def handle_multi_stream_balance() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Net mass balance", result, "kg/s")
     success_message()
@@ -174,7 +176,7 @@ def handle_reaction_stoichiometry_balance() -> None:
 
     stoich_coeffs = dict(zip(species_list, coeff_list))
     reaction_rates = get_float("Enter reaction rate (mol/s): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Species", species_list, "")
@@ -186,7 +188,7 @@ def handle_reaction_stoichiometry_balance() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     print("Rate of consumption/production for each species (mol/s): ")
     for sp, rate in result.items():
@@ -214,7 +216,7 @@ def handle_component_mass_fractions() -> None:
         return
 
     masses = dict(zip(species_list, mass_list))
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Species", species_list, "")
@@ -241,7 +243,7 @@ def handle_mixture_mass_flow_calculations() -> None:
     clear_screen()
     density = get_float("Enter mixture density (kg/m^3): ")
     volumetric_flow = get_float("Enter volumetric flow rate (m^3/s): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Mixture density", density, "kg/m^3")
@@ -259,7 +261,7 @@ def handle_mixture_mass_flow_calculations() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Mixture mass flow rate", result, "kg/s")
     success_message()

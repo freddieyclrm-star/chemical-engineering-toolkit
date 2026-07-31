@@ -20,13 +20,15 @@ from toolkit.utils.formatting import (
     error_message,
     clear_screen,
     invalid_choice,
+    spacer,
+    safe_run,
 )
 
 
 def handler_name() -> None:
     """Display placeholder input and result sections for a generic handler."""
     # Inputs section
-    print()
+    spacer(1)
     format_section("Inputs")
     format_label(...)
     format_label(...)
@@ -37,7 +39,7 @@ def handler_name() -> None:
         return
 
     # Results section
-    print()
+    spacer(1)
     format_section("Results")
     format_result(...)
     success_message()
@@ -52,17 +54,17 @@ def run_energy_balance_menu() -> None:
             print("Returning to Main Menu...")
             break
         elif choice == "1" or choice == "sensible heat calculation":
-            handle_sensible_heat()
+            safe_run(handle_sensible_heat)
         elif choice == "2" or choice == "latent heat calculation":
-            handle_latent_heat()
+            safe_run(handle_latent_heat)
         elif choice == "3" or choice == "reaction enthalpy":
-            handle_reaction_enthalpy()
+            safe_run(handle_reaction_enthalpy)
         elif choice == "4" or choice == "heat capacity (cp) calculations":
-            handle_heat_capacity()
+            safe_run(handle_heat_capacity)
         elif choice == "5" or choice == "heat exchanger energy balance":
-            handle_heat_exchanger_energy_balance()
+            safe_run(handle_heat_exchanger_energy_balance)
         elif choice == "6" or choice == "two streams heat exchanger balance":
-            handle_two_stream_heat_exchanger_balance()
+            safe_run(handle_two_stream_heat_exchanger_balance)
         else:
             invalid_choice()
 
@@ -77,7 +79,7 @@ def print_energy_balance_menu() -> None:
     print("4. Heat Capacity (Cp) Calculations")
     print("5. Heat Exchanger Energy Balance")
     print("6. Two Streams Heat Exchanger Balance")
-    print()
+    spacer(1)
 
 
 def handle_sensible_heat() -> None:
@@ -88,7 +90,7 @@ def handle_sensible_heat() -> None:
     cp = get_float("Enter specific heat capacity (J/kg•K): ")
     t_in = get_float("Enter inlet temperature (°C): ")
     t_out = get_float("Enter outlet temperature (°C): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Mass flow rate", mass_flow, "kg/s")
@@ -108,7 +110,7 @@ def handle_sensible_heat() -> None:
     except Exception as exc:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Sensible heat duty", result, "W")
     success_message()
@@ -120,7 +122,7 @@ def handle_latent_heat() -> None:
     print("\n=== Latent Heat Calculation ===")
     mass_flow = get_float("Enter mass flow rate (kg/s): ")
     latent_heat_value = get_float("Enter latent heat value (J/kg): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Mass flow rate", mass_flow, "kg/s")
@@ -138,7 +140,7 @@ def handle_latent_heat() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Latent heat duty", result, "W")
     success_message()
@@ -150,7 +152,7 @@ def handle_reaction_enthalpy() -> None:
     print("\n=== Reaction Enthalpy Calculation ===")
     reaction_rate = get_float("Enter reaction rate (mol/s): ")
     delta_h_reaction = get_float("Enter reaction enthalpy ΔH (J/mol): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Reaction rate", reaction_rate, "mol/s")
@@ -161,7 +163,7 @@ def handle_reaction_enthalpy() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Reaction enthalpy duty", result, "W")
     success_message()
@@ -179,7 +181,7 @@ def handle_heat_capacity() -> None:
 
     if choice == "1":
         cp_value = get_float("Enter constant Cp value (J/kg·K): ")
-        print()
+        spacer(1)
 
         format_section("Inputs")
         format_label("Constant Cp value", cp_value, "J/kg·K")
@@ -188,7 +190,7 @@ def handle_heat_capacity() -> None:
             error_message()
             return
         result = cp_constant(cp_value)
-        print()
+        spacer(1)
         format_section("Results")
         format_result("Specific heat capacity", result, "J/kg·K")
         success_message()
@@ -210,7 +212,7 @@ def handle_heat_exchanger_energy_balance() -> None:
     cp = get_float("Enter specific heat capacity Cp (J/kg·K): ")
     t_in = get_float("Enter inlet temperature (°C): ")
     t_out = get_float("Enter outlet temperature (°C): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Mass flow rate", mass_flow, "kg/s")
@@ -230,7 +232,7 @@ def handle_heat_exchanger_energy_balance() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Heat exchanger balance", result, "W")
     print("Note: Positive = heating, Negative = cooling.")
@@ -247,7 +249,7 @@ def handle_two_stream_heat_exchanger_balance() -> None:
     cp_hot = get_float("Enter hot stream Cp (J/kg·K): ")
     t_hot_in = get_float("Enter hot stream inlet temperature (°C): ")
     t_hot_out = get_float("Enter hot stream outlet temperature (°C): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Mass flow rate", m_hot, "kg/s")
@@ -260,7 +262,7 @@ def handle_two_stream_heat_exchanger_balance() -> None:
     cp_cold = get_float("Enter cold stream Cp (J/kg·K): ")
     t_cold_in = get_float("Enter cold stream inlet temperature (°C): ")
     t_cold_out = get_float("Enter cold stream outlet temperature (°C): ")
-    print()
+    spacer(1)
 
     format_section("Inputs")
     format_label("Mass flow rate", m_cold, "kg/s")
@@ -294,7 +296,7 @@ def handle_two_stream_heat_exchanger_balance() -> None:
         print("\nAn error occurred during calculation:")
         print(f"→ {exc}")
 
-    print()
+    spacer(1)
     format_section("Results")
     format_result("Hot-side duty", q_hot, "W")
     format_result("Cold-side duty", q_cold, "W")

@@ -1,7 +1,7 @@
 from toolkit.balances import mass_balance, energy_balance
 from toolkit.constants import engineering_constants, scientific_constants
 from toolkit.units import unit_converter
-from toolkit.utils.formatting import invalid_choice, clear_screen
+from toolkit.utils.formatting import invalid_choice, clear_screen, spacer, safe_run
 
 
 def run_main_menu() -> None:
@@ -17,15 +17,15 @@ def run_main_menu() -> None:
             print("Exiting the program.")
             break
         elif choice == "1" or choice == "unit converter":
-            handle_unit_converter()
+            safe_run(handle_unit_converter)
         elif choice == "2" or choice == "scientific constants":
-            handle_scientific_constants()
+            safe_run(handle_scientific_constants)
         elif choice == "3" or choice == "engineering constants":
-            handle_engineering_constants()
+            safe_run(handle_engineering_constants)
         elif choice == "4" or choice == "mass balance":
-            handle_mass_balance()
+            safe_run(handle_mass_balance)
         elif choice == "5" or choice == "energy balance":
-            handle_energy_balance()
+            safe_run(handle_energy_balance)
         else:
             invalid_choice()
 
@@ -43,7 +43,7 @@ def print_main_menu() -> None:
     print("3. Engineering Constants")
     print("4. Mass Balance")
     print("5. Energy Balance")
-    print()
+    spacer(1)
 
 
 def handle_unit_converter() -> None:

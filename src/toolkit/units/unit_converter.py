@@ -12,6 +12,8 @@ from toolkit.utils.formatting import (
     error_message,
     clear_screen,
     invalid_choice,
+    spacer,
+    safe_run,
 )
 from toolkit.units.unit_definitions import UNITS
 
@@ -47,23 +49,23 @@ def run_unit_menu() -> None:
             print("Returning to Main Menu...")
             break
         elif choice == "1" or choice.lower() == "length":
-            handle_length()
+            safe_run(handle_length)
         elif choice == "2" or choice.lower() == "mass":
-            handle_mass()
+            safe_run(handle_mass)
         elif choice == "3" or choice.lower() == "temperature":
-            handle_temperature()
+            safe_run(handle_temperature)
         elif choice == "4" or choice.lower() == "volume":
-            handle_volume()
+            safe_run(handle_volume)
         elif choice == "5" or choice.lower() == "pressure":
-            handle_pressure()
+            safe_run(handle_pressure)
         elif choice == "6" or choice.lower() == "energy":
-            handle_energy()
+            safe_run(handle_energy)
         elif choice == "7" or choice.lower() == "power":
-            handle_power()
+            safe_run(handle_power)
         elif choice == "8" or choice.lower() == "time":
-            handle_time()
+            safe_run(handle_time)
         elif choice == "9" or choice.lower() == "speed":
-            handle_speed()
+            safe_run(handle_speed)
         else:
             invalid_choice()
 
@@ -82,7 +84,7 @@ def print_unit_menu() -> None:
     print("7. Power")
     print("8. Time")
     print("9. Speed")
-    print()
+    spacer(1)
 
 
 def handle_length() -> None:
@@ -91,7 +93,7 @@ def handle_length() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["length"].keys()
     try:
@@ -125,7 +127,7 @@ def handle_mass() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["mass"].keys()
     try:
@@ -163,7 +165,7 @@ def handle_temperature() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["temperature"].keys()
     try:
@@ -197,7 +199,7 @@ def handle_volume() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["volume"].keys()
     try:
@@ -235,7 +237,7 @@ def handle_pressure() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["pressure"].keys()
     try:
@@ -273,7 +275,7 @@ def handle_energy() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["energy"].keys()
     try:
@@ -311,7 +313,7 @@ def handle_power() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["power"].keys()
     try:
@@ -349,7 +351,7 @@ def handle_time() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["time"].keys()
     try:
@@ -387,7 +389,7 @@ def handle_speed() -> None:
     value = get_float("Enter the value to convert: ")
     from_unit = input("Enter the unit to convert from: ").strip()
     to_unit = input("Enter the unit to convert to: ").strip()
-    print()
+    spacer(1)
 
     supported_units = UNITS["speed"].keys()
     try:

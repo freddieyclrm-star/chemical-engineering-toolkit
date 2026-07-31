@@ -1,4 +1,4 @@
-from toolkit.utils.formatting import clear_screen, invalid_choice
+from toolkit.utils.formatting import clear_screen, invalid_choice, spacer, safe_run
 
 
 def print_engineering_menu() -> None:
@@ -14,7 +14,7 @@ def print_engineering_menu() -> None:
     print("2. Specific Heat Capacity")
     print("3. Density of Water")
     print("4. Density of Air")
-    print()
+    spacer(1)
 
 
 def run_engineering_menu() -> None:
@@ -26,13 +26,13 @@ def run_engineering_menu() -> None:
             print("Returning to Main Menu...")
             break
         elif choice == "1" or choice == "atmospheric pressure":
-            handle_atmospheric_pressure()
+            safe_run(handle_atmospheric_pressure)
         elif choice == "2" or choice == "specific heat capacity":
-            handle_specific_heat_capacity()
+            safe_run(handle_specific_heat_capacity)
         elif choice == "3" or choice == "density of water":
-            handle_density_of_water()
+            safe_run(handle_density_of_water)
         elif choice == "4" or choice == "density of air":
-            handle_density_of_air()
+            safe_run(handle_density_of_air)
         else:
             invalid_choice()
 

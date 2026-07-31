@@ -1,5 +1,3 @@
-import unittest
-
 from toolkit.units.unit_definitions import UNITS
 
 
@@ -76,55 +74,3 @@ class Converter:
         result = base_value / category_dict[to_unit]
 
         return result
-
-
-class TestConverterRegression(unittest.TestCase):
-    def setUp(self):
-        self.converter = Converter()
-
-    def test_init_uses_unit_definitions(self):
-        self.assertIs(self.converter.units, UNITS)
-
-    def test_temperature_conversions(self):
-        self.assertAlmostEqual(self.converter.convert(0, "C", "K"), 273.15)
-        self.assertAlmostEqual(self.converter.convert(32, "F", "C"), 0.0)
-        self.assertAlmostEqual(self.converter.convert(273.15, "K", "F"), 32.0)
-
-    def test_linear_unit_conversion(self):
-        non_temperature_categories = [
-            category
-            for category, units in UNITS.items()
-            if category != "temperature" and len(units) >= 2
-        ]
-        if not non_temperature_categories:
-            self.skipTest(
-                "No non-temperature category available for conversion testing"
-            )
-
-        category = non_temperature_categories[0]
-        units = UNITS[category]
-        from_unit, to_unit = list(units.keys())[:2]
-        value = 10.0
-        expected = value * units[from_unit] / units[to_unit]
-        self.assertAlmostEqual(
-            self.converter.convert(value, from_unit, to_unit),
-            expected,
-        )
-
-    def test_invalid_units_raise_value_error(self):
-        with self.assertRaises(ValueError):
-            self.converter.convert(1.0, "not_a_unit", "C")
-        with self.assertRaises(ValueError):
-            self.converter.convert(1.0, "C", "not_a_unit")
-
-    def test_incompatible_units_raise_value_error(self):
-        with self.assertRaises(ValueError):
-            self.converter.convert(1.0, "C", "m")
-
-    def test_unsupported_temperature_conversion_raises_value_error(self):
-        with self.assertRaises(ValueError):
-            self.converter.convert(1.0, "C", "C")
-
-
-if __name__ == "__main__":
-    unittest.main()

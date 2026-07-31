@@ -1,4 +1,4 @@
-from toolkit.utils.formatting import clear_screen, invalid_choice
+from toolkit.utils.formatting import clear_screen, invalid_choice, spacer, safe_run
 
 
 def print_scientific_menu() -> None:
@@ -23,7 +23,7 @@ def print_scientific_menu() -> None:
     print("9. Mass of Neutron")
     print("10. Avogadro's Constant")
     print("11. Molar Gas Constant")
-    print()
+    spacer(1)
 
 
 def run_scientific_menu() -> None:
@@ -39,27 +39,27 @@ def run_scientific_menu() -> None:
             print("Returning to Main Menu...")
             break
         elif choice == "1" or choice == "speed of light":
-            handle_speed_of_light()
+            safe_run(handle_speed_of_light)
         elif choice == "2" or choice == "planck constant":
-            handle_planck_constant()
+            safe_run(handle_planck_constant)
         elif choice == "3" or choice == "boltzmann constant":
-            handle_boltzmann_constant()
+            safe_run(handle_boltzmann_constant)
         elif choice == "4" or choice == "newton's gravitational constant":
-            handle_newtons_gravitational_constant()
+            safe_run(handle_newtons_gravitational_constant)
         elif choice == "5" or choice == "stefan-boltzmann constant":
-            handle_stefan_boltzmann_constant()
+            safe_run(handle_stefan_boltzmann_constant)
         elif choice == "6" or choice == "elementary charge":
-            handle_elementary_charge()
+            safe_run(handle_elementary_charge)
         elif choice == "7" or choice == "mass of electron":
-            handle_mass_of_electron()
+            safe_run(handle_mass_of_electron)
         elif choice == "8" or choice == "mass of proton":
-            handle_mass_of_proton()
+            safe_run(handle_mass_of_proton)
         elif choice == "9" or choice == "mass of neutron":
-            handle_mass_of_neutron()
+            safe_run(handle_mass_of_neutron)
         elif choice == "10" or choice == "avogadro's constant":
-            handle_avogadros_constant()
+            safe_run(handle_avogadros_constant)
         elif choice == "11" or choice == "molar gas constant":
-            handle_molar_gas_constant()
+            safe_run(handle_molar_gas_constant)
         else:
             invalid_choice()
 
