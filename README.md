@@ -1,4 +1,4 @@
-# ⭐ Chemical Engineering Toolkit — Version 0.1.0
+# ⭐ Chemical Engineering Toolkit — Version 0.1.1
 ![Tests](https://github.com/freddieyclrm-star/chemical-engineering-toolkit/actions/workflows/tests.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.12-blue.svg)
 ![License](https://img.shields.io/github/license/freddieyclrm-star/chemical-engineering-toolkit.svg)  
